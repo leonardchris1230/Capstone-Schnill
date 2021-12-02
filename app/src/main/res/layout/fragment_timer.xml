@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lazibear.capstone_schnill.MainActivity">
 
-<!--    <include layout="@layout/content_timer" />-->
+
     <TextView
         android:id="@+id/textView_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="10:00"
-        android:textSize="70sp"
+        android:layout_gravity="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        tools:text="10:00" />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
         android:id="@+id/progress_countdown"
-        android:minWidth="306dp"
-        android:minHeight="306dp"
+        style="@style/Widget.MaterialProgressBar.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:minWidth="306dp"
+        android:minHeight="306dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_bigger_margin"
+        android:layout_marginStart="56dp"
+        app:layout_constraintBottom_toBottomOf="@id/fab_pause"
+        app:layout_constraintStart_toEndOf="@+id/fab_pause"
+        app:layout_constraintTop_toTopOf="@id/fab_pause"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_stop" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_margin="@dimen/fab_bigger_margin"
-        app:srcCompat="@drawable/ic_pause" />
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79"
+        android:src="@drawable/ic_pause"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_bigger_margin"
+        app:layout_constraintBottom_toBottomOf="@id/fab_pause"
+        app:layout_constraintTop_toTopOf="@id/fab_pause"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fab_pause"
         app:srcCompat="@drawable/ic_play_arrow" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

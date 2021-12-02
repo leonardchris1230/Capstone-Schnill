@@ -2,10 +2,16 @@ package com.lazibear.capstone_schnill.ui.timer
 
 import android.os.CountDownTimer
 import android.text.format.DateUtils
+import android.util.Log
+import android.util.TimeUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.google.android.material.timepicker.TimeFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.xml.datatype.DatatypeConstants.SECONDS
 
 class TimerViewModel : ViewModel() {
 
@@ -13,26 +19,45 @@ class TimerViewModel : ViewModel() {
 
     private val initialTime = MutableLiveData<Long>()
     private val currentTime = MutableLiveData<Long>()
+    private var currentProgressTime = MutableLiveData<Int>()
 
     // The String version of the current time (hh:mm:ss)
-    val currentTimeString = Transformations.map(currentTime) { time ->
+        val currentTimeString = Transformations.map(currentTime) { time ->
         DateUtils.formatElapsedTime(time / 1000)
     }
+
+    val progressBarCD = currentProgressTime
+//    val currentProgress = Transformations.map(currentProgressTime){ time ->
+//        TimeUnit.SECONDS(time / 100)
+//    }
+
+
     fun getInitialTime() = initialTime.value
 
     // Event which triggers the end of count down
     private val _eventCountDownFinish = MutableLiveData<Boolean>()
     val eventCountDownFinish: LiveData<Boolean> = _eventCountDownFinish
 
+    fun setProgress (sec : Int){
+//        val currentprogress = (sec*60)/100
+//        currentProgressTime.value = currentprogress
+
+    }
+
     fun setInitialTime(minuteFocus: Long) {
         val initialTimeMillis = minuteFocus * 60 * 1000
         initialTime.value = initialTimeMillis
         currentTime.value = initialTimeMillis
+        currentProgressTime.value = initialTimeMillis.toInt()*60
 
         timer = object : CountDownTimer(initialTimeMillis, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 currentTime.value = millisUntilFinished
+                currentProgressTime.value = millisUntilFinished.toInt()/1000
+                Log.d("mylog","check "+currentProgressTime.value)
+            /*    currentProgressTime.value = (minuteFocus * 60 - millisUntilFinished) / 100*/
+
             }
 
             override fun onFinish() {
