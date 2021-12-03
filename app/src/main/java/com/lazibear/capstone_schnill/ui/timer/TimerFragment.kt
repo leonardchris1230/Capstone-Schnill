@@ -1,14 +1,13 @@
 package com.lazibear.capstone_schnill.ui.timer
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.databinding.FragmentTimerBinding
-import kotlin.math.log
+import com.lazibear.capstone_schnill.ui.MainViewModel
 
 class TimerFragment : Fragment() {
 
@@ -19,18 +18,19 @@ class TimerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle? ): View {
-       val timerViewModel = ViewModelProvider(this).get(TimerViewModel::class.java)
+        savedInstanceState: Bundle?
+    ): View {
+        val timerViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
         _binding = FragmentTimerBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val pomodoro = 25L
         val progresspomodoro = 25
-        binding.progressCountdown.max = 60*25
-        binding.progressCountdown.progress = 60*25
+        binding.progressCountdown.max = 60 * 25
+        binding.progressCountdown.progress = 60 * 25
         timerViewModel.setInitialTime(pomodoro)
-        timerViewModel.setProgress(progresspomodoro)
+
         timerViewModel.currentTimeString.observe(viewLifecycleOwner, {
             binding.textViewCountdown.text = it
 //            val currentProgress = timerViewModel.currentProgress
@@ -38,7 +38,9 @@ class TimerFragment : Fragment() {
 //                binding.progressCountdown.progress = 100 - currentProgress
 //            }
         })
-        timerViewModel.progressBarCD.observe(viewLifecycleOwner,{
+        timerViewModel.eventCountDownFinish.observe(viewLifecycleOwner, { buttonState(!it) })
+        timerViewModel.progressBarCD.observe(viewLifecycleOwner, {
+
             binding.progressCountdown.progress = it
         })
 
@@ -46,14 +48,17 @@ class TimerFragment : Fragment() {
 
         binding.fabStart.setOnClickListener {
             timerViewModel.startTimer()
-       buttonState(true)}
+            buttonState(true)
+        }
 
         binding.fabPause.setOnClickListener {}
 
 
         binding.fabStop.setOnClickListener {
             timerViewModel.resetTimer()
-            buttonState(false)}
+            binding.progressCountdown.progress = 60 * 25
+            buttonState(false)
+        }
 
         return root
     }
