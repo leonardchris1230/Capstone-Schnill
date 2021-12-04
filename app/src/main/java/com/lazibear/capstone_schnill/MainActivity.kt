@@ -1,5 +1,7 @@
 package com.lazibear.capstone_schnill
 
+import android.content.pm.ActivityInfo
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

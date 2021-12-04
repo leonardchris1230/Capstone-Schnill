@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Capstone_Schnill</string>
+    <string name="app_name">Schnill</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_timer">Timer</string>
     <string name="history">History</string>
+    <string name="session_name_focus">Focus Session</string>
+    <string name="session_name_break">Break Session</string>
 </resources>
