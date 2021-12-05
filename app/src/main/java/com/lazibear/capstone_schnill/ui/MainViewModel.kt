@@ -1,12 +1,22 @@
 package com.lazibear.capstone_schnill.ui
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.CountDownTimer
 import android.text.format.DateUtils
 import android.util.Log
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.lazibear.capstone_schnill.R
 
 class MainViewModel: ViewModel() {
 
@@ -54,7 +64,9 @@ class MainViewModel: ViewModel() {
 
             }
 
-            override fun onFinish() {
+            override fun onFinish( ) {
+                Log.d("mylog","fucking done")
+                showNotif()
                 resetTimer()
             }
         }
@@ -74,4 +86,12 @@ class MainViewModel: ViewModel() {
         super.onCleared()
         timer?.cancel()
     }
+
+    fun showNotif() {
+
+
+
+    }
+
+
 }
