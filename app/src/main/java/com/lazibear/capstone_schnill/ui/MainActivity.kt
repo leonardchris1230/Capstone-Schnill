@@ -6,8 +6,10 @@ import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+import android.media.RingtoneManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT)
+        setTheme(R.style.Theme_Capstone_Schnill)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -100,17 +103,20 @@ class MainActivity : AppCompatActivity() {
         binding.fabStop.isEnabled = isRunning
 
     }
+
     private fun showNotif() {
         val notificationManagerCompat =
             this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         val pendingIntent = TaskStackBuilder.create(this).run { addNextIntentWithParentStack(intent)
             getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
         }
+
         val builder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notif_schnill)
             .setContentTitle("Congrats!")
             .setContentText("Your Session is over!")
-            .setAutoCancel(true)
+            .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
