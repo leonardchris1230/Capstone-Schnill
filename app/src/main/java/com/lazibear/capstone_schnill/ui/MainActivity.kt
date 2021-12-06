@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnSession.setText(getString(R.string.session_name_focus))
 
         val timerViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        buttonState(false)
+
 
         binding.progressCountdown.max = 60 * 25
         binding.progressCountdown.progress = 60 * 25
@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun buttonState(isRunning: Boolean) {
         binding.fabStart.isEnabled = !isRunning
+        binding.btnSession.isVisible = !isRunning
         binding.fabStop.isEnabled = isRunning
 
     }

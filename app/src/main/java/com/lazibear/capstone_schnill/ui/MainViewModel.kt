@@ -1,24 +1,14 @@
 package com.lazibear.capstone_schnill.ui
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
-import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.os.CountDownTimer
 import android.text.format.DateUtils
 import android.util.Log
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.lazibear.capstone_schnill.R
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
 
     private var timer: CountDownTimer? = null
 
@@ -45,28 +35,26 @@ class MainViewModel: ViewModel() {
     val eventCountDownFinish: LiveData<Boolean> = _eventCountDownFinish
 
 
-
     fun setInitialTime(minuteFocus: Long) {
         val initialTimeMillis = minuteFocus * 60 * 1000
         initialTime.value = initialTimeMillis
         currentTime.value = initialTimeMillis
-        currentProgressTime.value = initialTimeMillis.toInt()*60
+        currentProgressTime.value = initialTimeMillis.toInt() * 60
 
 
         timer = object : CountDownTimer(initialTimeMillis, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 currentTime.value = millisUntilFinished
-                currentProgressTime.value = millisUntilFinished.toInt()/1000
-                Log.d("mylog","check "+currentTime.value)
+                currentProgressTime.value = millisUntilFinished.toInt() / 1000
+                Log.d("mylog", "check " + currentTime.value)
 
                 /*    currentProgressTime.value = (minuteFocus * 60 - millisUntilFinished) / 100*/
 
             }
 
-            override fun onFinish( ) {
-                Log.d("mylog","fucking done")
-                showNotif()
+            override fun onFinish() {
+                Log.d("mylog", "fucking done")
                 resetTimer()
             }
         }
@@ -85,12 +73,6 @@ class MainViewModel: ViewModel() {
     override fun onCleared() {
         super.onCleared()
         timer?.cancel()
-    }
-
-    fun showNotif() {
-
-
-
     }
 
 
