@@ -19,9 +19,7 @@ import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        const val NOTIFICATION_CHANNEL_ID = "notify-channel"
-    }
+    
 
     private lateinit var binding: ActivityMainBinding
 
@@ -131,6 +129,36 @@ class MainActivity : AppCompatActivity() {
         val notif = builder.build()
         notificationManagerCompat.notify(100, notif)
 
+    }
+    
+     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.navigation_timer ->{
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                true
+            }
+            R.id.navigation_history ->{
+                val i = Intent(this, HistoryFragment::class.java)
+                startActivity(i)
+                true
+            }
+            R.id.navigation_notifications ->{
+                val i = Intent(this, NotificationsFragment::class.java)
+                startActivity(i)
+                true
+            }
+            R.id.setting -> {
+                val i = Intent(this, SettingActivity::class.java)
+                startActivity(i)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    
+    companion object {
+        const val NOTIFICATION_CHANNEL_ID = "notify-channel"
     }
 
 
