@@ -17,6 +17,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.lazibear.capstone_schnill.R
+import kotlin.math.log
 
 class MainViewModel: ViewModel() {
 
@@ -44,6 +45,9 @@ class MainViewModel: ViewModel() {
     private val _eventCountDownFinish = MutableLiveData<Boolean>()
     val eventCountDownFinish: LiveData<Boolean> = _eventCountDownFinish
 
+    private val defaultSession = MutableLiveData<Boolean>()
+    val mdefaultSession: LiveData<Boolean> = defaultSession
+
 
 
     fun setInitialTime(minuteFocus: Long) {
@@ -58,7 +62,6 @@ class MainViewModel: ViewModel() {
             override fun onTick(millisUntilFinished: Long) {
                 currentTime.value = millisUntilFinished
                 currentProgressTime.value = millisUntilFinished.toInt()/1000
-                Log.d("mylog","check "+currentTime.value)
 
                 /*    currentProgressTime.value = (minuteFocus * 60 - millisUntilFinished) / 100*/
 
@@ -74,6 +77,7 @@ class MainViewModel: ViewModel() {
 
     fun startTimer() {
         timer?.start()
+
     }
 
     fun resetTimer() {
@@ -82,10 +86,26 @@ class MainViewModel: ViewModel() {
         _eventCountDownFinish.value = true
     }
 
+//    fun pauseTimer(){
+//        timer?.cancel()
+//        Log.d("mylog", "test "+currentTime.value)
+//    }
+//
+//    fun resumeTimer(){
+//        val remainingTime = currentTime.value!! /1000/60
+//        Log.d("mylog", "test "+remainingTime)
+//        if (remainingTime != null) {
+//            setInitialTime(remainingTime)
+//        }
+//        timer?.start()
+//
+//    }
+
     override fun onCleared() {
         super.onCleared()
         timer?.cancel()
     }
+
 
     fun showNotif() {
 

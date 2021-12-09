@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT)
@@ -32,16 +34,20 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
         var pomodSession = true
         val pomodoro = 25L
         binding.btnSession.setText(getString(R.string.session_name_focus))
+        binding.progressCountdown.max = 60 * 25
+        binding.progressCountdown.progress = 60 * 25
 
         val timerViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
 
-        binding.progressCountdown.max = 60 * 25
-        binding.progressCountdown.progress = 60 * 25
+
         timerViewModel.setInitialTime(pomodoro)
+
         binding.btnSession.setOnClickListener {
             if (pomodSession) {
                 val breakSession = 1L
@@ -83,9 +89,7 @@ class MainActivity : AppCompatActivity() {
             binding.btnSession.isVisible = false
         }
 
-        binding.fabPause.setOnClickListener {
 
-        }
 
 
         binding.fabStop.setOnClickListener {
@@ -132,6 +136,8 @@ class MainActivity : AppCompatActivity() {
         notificationManagerCompat.notify(100, notif)
 
     }
+
+
 
 
 
