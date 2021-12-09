@@ -5,17 +5,20 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.media.RingtoneManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
+import com.lazibear.capstone_schnill.ui.history.HistoryActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +37,17 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.mainToolbar.inflateMenu(R.menu.main_menu)
+        binding.mainToolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.history ->{
+                    val intent = Intent(this, HistoryActivity::class.java).apply {  }
+                    startActivity(intent)}
+            }
+            true
+        }
+
+
 
 
         var pomodSession = true
