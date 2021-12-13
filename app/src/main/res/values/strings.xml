@@ -8,5 +8,7 @@
     <string name="session_name_focus">Focus Session</string>
     <string name="session_name_break">Break Session</string>
     <string name="title_reminder">Reminder</string>
+    <string name="cancel_alert">Cancel</string>
+    <string name="stop_alert">Stop</string>
 
 </resources>

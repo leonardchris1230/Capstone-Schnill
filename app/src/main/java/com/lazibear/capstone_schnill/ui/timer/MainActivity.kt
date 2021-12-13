@@ -1,20 +1,21 @@
-package com.lazibear.capstone_schnill.ui
+package com.lazibear.capstone_schnill.ui.timer
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
+import android.annotation.SuppressLint
+import android.app.*
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-import android.media.RingtoneManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
@@ -28,10 +29,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedStateRegistry.isRestored
-        setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = SCREEN_ORIENTATION_PORTRAIT
         setTheme(R.style.Theme_Capstone_Schnill)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,20 +42,19 @@ class MainActivity : AppCompatActivity() {
         binding.mainToolbar.setNavigationIcon(R.drawable.ic_back_arrow)
         binding.mainToolbar.setNavigationOnClickListener { onBackPressed() }
         binding.mainToolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
-                R.id.history ->{
-                    val intent = Intent(this, HistoryActivity::class.java).apply {  }
-                    startActivity(intent)}
+            when (it.itemId) {
+                R.id.history -> {
+                    val intent = Intent(this, HistoryActivity::class.java).apply { }
+                    startActivity(intent)
+                }
             }
             true
         }
 
 
-
-
         var pomodSession = true
         val pomodoro = 25L
-        binding.btnSession.setText(getString(R.string.session_name_focus))
+        binding.btnSession.text = getString(R.string.session_name_focus)
         binding.progressCountdown.max = 60 * 25
         binding.progressCountdown.progress = 60 * 25
 
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 binding.progressCountdown.max = 60 * 1
                 binding.progressCountdown.progress = 60 * 1
                 timerViewModel.setInitialTime(breakSession)
-                binding.btnSession.setText(getString(R.string.session_name_break))
+                binding.btnSession.text = getString(R.string.session_name_break)
                 pomodSession = false
 
 
@@ -86,13 +87,18 @@ class MainActivity : AppCompatActivity() {
 
 
         timerViewModel.currentTimeString.observe(this, { binding.textViewCountdown.text = it })
-
         timerViewModel.progressBarCD.observe(this, { binding.progressCountdown.progress = it })
+        timerViewModel.counterSession.observe(this,{
+            if(it==null) binding.tvSessionElapsed.text = "Session Elapsed : 0"
+            else binding.tvSessionElapsed.text = "Session Elapsed :$it"
+           })
 
 
-        timerViewModel.eventCountDownFinish.observe(this,{ buttonState(false)
-        binding.btnSession.isVisible = it
-        binding.progressCountdown.progress = binding.progressCountdown.max
+
+        timerViewModel.eventCountDownFinish.observe(this, {
+            buttonState(false)
+            binding.btnSession.isVisible = it
+            binding.progressCountdown.progress = binding.progressCountdown.max
             showNotif()
 
         })
@@ -108,10 +114,22 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.fabStop.setOnClickListener {
-            timerViewModel.resetTimer()
-            binding.progressCountdown.progress = 60 * 25
-            buttonState(false)
-            binding.btnSession.isVisible = true
+            val dialog = AlertDialog.Builder(this)
+            dialog.setMessage("Do you want to stop the timer?")
+                .setPositiveButton(R.string.stop_alert,DialogInterface.OnClickListener{dialog, id->
+                    timerViewModel.resetTimer()
+                    binding.progressCountdown.progress = 60 * 25
+                    buttonState(false)
+                    binding.btnSession.isVisible = true
+                })
+                .setNegativeButton(R.string.cancel_alert,DialogInterface.OnClickListener{dialog, id->
+                    Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
+                })
+            dialog.create()
+            dialog.show()
+
+
+
         }
 
 
@@ -129,7 +147,8 @@ class MainActivity : AppCompatActivity() {
         val notificationManagerCompat =
             this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val pendingIntent = TaskStackBuilder.create(this).run { addNextIntentWithParentStack(intent)
+        val pendingIntent = TaskStackBuilder.create(this).run {
+            addNextIntentWithParentStack(intent)
             getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
@@ -147,14 +166,16 @@ class MainActivity : AppCompatActivity() {
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             builder.setChannelId(NOTIFICATION_CHANNEL_ID)
-            notificationManagerCompat.createNotificationChannel(channel)}
+            notificationManagerCompat.createNotificationChannel(channel)
+        }
         val notif = builder.build()
         notificationManagerCompat.notify(100, notif)
 
     }
 
+    private fun alertStop(){
 
-
+    }
 
 
 }

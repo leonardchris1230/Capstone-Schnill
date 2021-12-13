@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityChoiceBinding
-import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
-import com.lazibear.capstone_schnill.ui.MainActivity
-import com.lazibear.capstone_schnill.ui.history.HistoryActivity
+import com.lazibear.capstone_schnill.ui.timer.MainActivity
 
 class ChoiceActivity : AppCompatActivity() {
 
