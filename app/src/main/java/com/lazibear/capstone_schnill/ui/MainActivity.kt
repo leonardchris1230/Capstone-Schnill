@@ -28,16 +28,17 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        savedStateRegistry.isRestored
         setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT)
         setTheme(R.style.Theme_Capstone_Schnill)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.mainToolbar.inflateMenu(R.menu.main_menu)
+        binding.mainToolbar.setNavigationIcon(R.drawable.ic_back_arrow)
+        binding.mainToolbar.setNavigationOnClickListener { onBackPressed() }
         binding.mainToolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.history ->{
@@ -118,6 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun buttonState(isRunning: Boolean) {
         binding.fabStart.isEnabled = !isRunning
+        binding.mainToolbar.isEnabled = !isRunning
         binding.btnSession.isVisible = !isRunning
         binding.fabStop.isEnabled = isRunning
 
