@@ -12,17 +12,17 @@ interface HistoryDao {
 //    @RawQuery(observedEntities = [History::class])
 //    fun getHistory(query: SupportSQLiteQuery): DataSource.Factory<Int, History>
 
-    @Query("select * from history_table where id = :habitId")
-    fun getHistorybyId(habitId: Int): LiveData<History>
+//    @Query("select * from history_table where id = :habitId")
+//    fun getHistorybyId(habitId: Int): LiveData<History>
 
-    @Insert
-    fun insert(habit: History): Long
+    @Query("SELECT * FROM history_table ")
+    fun getAllHistory(): LiveData<List<History>>
 
-    @Insert
-    fun insertAll(vararg history: History)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertHistory(history: History):Long
 
     @Delete
-    fun delete(habits: History)
+    fun deleteHistory(habits: History)
 
 
 }

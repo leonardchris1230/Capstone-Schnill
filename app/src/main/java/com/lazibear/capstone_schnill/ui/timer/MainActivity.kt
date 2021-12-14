@@ -9,17 +9,25 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.CoroutinesRoom.Companion.execute
 import com.lazibear.capstone_schnill.R
+import com.lazibear.capstone_schnill.data.History
+import com.lazibear.capstone_schnill.data.HistoryDatabase
+import com.lazibear.capstone_schnill.data.HistoryRepository
+import com.lazibear.capstone_schnill.data.HistoryViewModelFactory
 import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
 import com.lazibear.capstone_schnill.ui.history.HistoryActivity
+import com.lazibear.capstone_schnill.ui.history.HistoryViewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var historyDatabase: HistoryDatabase
+    private lateinit var repository: HistoryRepository
+    private lateinit var factory: HistoryViewModelFactory
+
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +73,9 @@ class MainActivity : AppCompatActivity() {
 
         val timerViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
+        val factory = HistoryViewModelFactory.getInstance(this)
+        historyViewModel = ViewModelProvider(this, factory)[HistoryViewModel::class.java]
+
 
 
         timerViewModel.setInitialTime(pomodoro)
@@ -89,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         timerViewModel.currentTimeString.observe(this, { binding.textViewCountdown.text = it })
         timerViewModel.progressBarCD.observe(this, { binding.progressCountdown.progress = it })
         timerViewModel.counterSession.observe(this,{
-            if(it==null) binding.tvSessionElapsed.text = "Session Elapsed : 0"
+            if(it==null) binding.tvSessionElapsed.text = getString(R.string.elapsed_session_null)
             else binding.tvSessionElapsed.text = "Session Elapsed :$it"
            })
 
@@ -110,23 +126,60 @@ class MainActivity : AppCompatActivity() {
             binding.btnSession.isVisible = false
         }
 
+        binding.fabSave.setOnClickListener {
+
+            val saveDialog = AlertDialog.Builder(this)
+            val saveEditText = EditText(this)
+
+            saveDialog.setMessage("Name your session")
+                .setTitle("Do you want to save this session?")
+                .setView(saveEditText)
+                .setPositiveButton("Save",DialogInterface.OnClickListener{ _, id->
+                    val saveTitle = saveEditText.text.toString()
+                    val date = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+                    val elapsed = binding.tvSessionElapsed.text.toString()
+                    val history = History(session = saveTitle, date = date, elapsedSession = elapsed)
+                        historyViewModel.insertHistory(history).also { finish() }
+
+
+
+//                    Coroutines.main {
+//                        val toast = Toast.makeText(this,"saved",Toast.LENGTH_SHORT)
+//                        toast.show()
+//                        historyViewModel.insertHistory(history).also {
+//                            finish() }
+//                    }
+
+
+                })
+                .setNegativeButton(R.string.cancel_alert,DialogInterface.OnClickListener{ _, id->
+                    val toast = Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
+                    toast.show()
+                })
+            saveDialog.create()
+            saveDialog.show()
+        }
+
 
 
 
         binding.fabStop.setOnClickListener {
-            val dialog = AlertDialog.Builder(this)
-            dialog.setMessage("Do you want to stop the timer?")
-                .setPositiveButton(R.string.stop_alert,DialogInterface.OnClickListener{dialog, id->
+            val stopDialog = AlertDialog.Builder(this)
+            stopDialog.setMessage("Do you want to stop the timer?")
+                .setPositiveButton(R.string.stop_alert,DialogInterface.OnClickListener{ _, id->
                     timerViewModel.resetTimer()
                     binding.progressCountdown.progress = 60 * 25
                     buttonState(false)
                     binding.btnSession.isVisible = true
+
+
                 })
-                .setNegativeButton(R.string.cancel_alert,DialogInterface.OnClickListener{dialog, id->
-                    Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
+                .setNegativeButton(R.string.cancel_alert,DialogInterface.OnClickListener{ _, id->
+                    val toast = Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
+                    toast.show()
                 })
-            dialog.create()
-            dialog.show()
+            stopDialog.create()
+            stopDialog.show()
 
 
 
@@ -173,7 +226,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun alertStop(){
+    private fun getDate(){
 
     }
 

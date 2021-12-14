@@ -1,6 +1,7 @@
 package com.lazibear.capstone_schnill.data
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -8,8 +9,7 @@ class HistoryRepository(private val historyDao: HistoryDao, private val executor
 
     companion object {
 
-        const val PAGE_SIZE = 30
-        const val PLACEHOLDERS = true
+
         @Volatile
         private var instance: HistoryRepository? = null
 
@@ -26,13 +26,17 @@ class HistoryRepository(private val historyDao: HistoryDao, private val executor
             }
 
         }
-
     }
-    fun insertHabit(newHistory: History) {
+
+    //     fun insertHistory(history: History) = historyDatabase.historyDao().insertHistory(history)
+    fun insertHistory(history: History) {
         executor.execute{
-            historyDao.insert(newHistory)
+            historyDao.insertHistory(history)
         }
     }
 
 
+    suspend fun deleteNote(history: History) = historyDao.deleteHistory(history)
+
+    fun getAllHistory(): LiveData<List<History>> = historyDao.getAllHistory()
 }

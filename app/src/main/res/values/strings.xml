@@ -10,5 +10,6 @@
     <string name="title_reminder">Reminder</string>
     <string name="cancel_alert">Cancel</string>
     <string name="stop_alert">Stop</string>
+    <string name="elapsed_session_null">Session Elapsed : 0</string>
 
 </resources>

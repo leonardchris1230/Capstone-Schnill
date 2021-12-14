@@ -19,8 +19,13 @@ data class History(
     @NonNull
     val session: String,
 
+
     @ColumnInfo(name = "date")
     @NonNull
     val date: String,
+
+    @ColumnInfo(name = "elapsedSession")
+    @NonNull
+    val elapsedSession:String,
 
 ): Parcelable
