@@ -1,9 +1,11 @@
 package com.lazibear.capstone_schnill.ui.timer
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.os.Build
@@ -16,18 +18,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.CoroutinesRoom.Companion.execute
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.data.History
-import com.lazibear.capstone_schnill.data.HistoryDatabase
-import com.lazibear.capstone_schnill.data.HistoryRepository
 import com.lazibear.capstone_schnill.data.HistoryViewModelFactory
 import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
 import com.lazibear.capstone_schnill.ui.history.HistoryActivity
 import com.lazibear.capstone_schnill.ui.history.HistoryViewModel
+import com.lazibear.capstone_schnill.utils.BREAK_DURATION
+import com.lazibear.capstone_schnill.utils.POMODORO_DURATION
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,9 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var historyViewModel: HistoryViewModel
-    private lateinit var historyDatabase: HistoryDatabase
-    private lateinit var repository: HistoryRepository
-    private lateinit var factory: HistoryViewModelFactory
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -51,63 +48,45 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.mainToolbar.inflateMenu(R.menu.main_menu)
-        binding.mainToolbar.setNavigationIcon(R.drawable.ic_back_arrow)
-        binding.mainToolbar.setNavigationOnClickListener { onBackPressed() }
-        binding.mainToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.history -> {
-                    val intent = Intent(this, HistoryActivity::class.java).apply { }
-                    startActivity(intent)
-                }
-            }
-            true
-        }
+        initMenu()
 
-
-        var pomodSession = true
-        val pomodoro = 25L
         binding.btnSession.text = getString(R.string.session_name_focus)
-        binding.progressCountdown.max = 60 * 25
-        binding.progressCountdown.progress = 60 * 25
+
 
         val timerViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
         val factory = HistoryViewModelFactory.getInstance(this)
         historyViewModel = ViewModelProvider(this, factory)[HistoryViewModel::class.java]
 
 
-
-        timerViewModel.setInitialTime(pomodoro)
+        initPomod()
+        var pomodSession = true
+        timerViewModel.setInitialTime(POMODORO_DURATION)
 
         binding.btnSession.setOnClickListener {
             if (pomodSession) {
-                val breakSession = 1L
-                binding.progressCountdown.max = 60 * 1
-                binding.progressCountdown.progress = 60 * 1
-                timerViewModel.setInitialTime(breakSession)
+                initBreak()
+                timerViewModel.setInitialTime(BREAK_DURATION)
                 binding.btnSession.text = getString(R.string.session_name_break)
                 pomodSession = false
-
-
             } else {
-                val pomodoroSession = 25L
-                binding.progressCountdown.max = 60 * 25
-                binding.progressCountdown.progress = 60 * 25
-                timerViewModel.setInitialTime(pomodoroSession)
+                initPomod()
+                timerViewModel.setInitialTime(POMODORO_DURATION)
                 binding.btnSession.setText(R.string.session_name_focus)
                 pomodSession = true
+
             }
 
         }
 
-
+        //observer
         timerViewModel.currentTimeString.observe(this, { binding.textViewCountdown.text = it })
         timerViewModel.progressBarCD.observe(this, { binding.progressCountdown.progress = it })
-        timerViewModel.counterSession.observe(this,{
-            if(it==null) binding.tvSessionElapsed.text = getString(R.string.elapsed_session_null)
-            else binding.tvSessionElapsed.text = "Session Elapsed :$it"
-           })
+        timerViewModel.counterSession.observe(this, {
+            if (it == null) {
+                binding.tvSessionElapsed.text = getString(R.string.elapsed_session_null)
+            } else binding.tvSessionElapsed.text = getString(R.string.text_session_elapsed) + it
+
+        })
 
 
 
@@ -116,14 +95,13 @@ class MainActivity : AppCompatActivity() {
             binding.btnSession.isVisible = it
             binding.progressCountdown.progress = binding.progressCountdown.max
             showNotif()
-
         })
-
 
         binding.fabStart.setOnClickListener {
             timerViewModel.startTimer()
             buttonState(true)
             binding.btnSession.isVisible = false
+            binding.mainToolbar.isVisible = false
         }
 
         binding.fabSave.setOnClickListener {
@@ -134,53 +112,42 @@ class MainActivity : AppCompatActivity() {
             saveDialog.setMessage("Name your session")
                 .setTitle("Do you want to save this session?")
                 .setView(saveEditText)
-                .setPositiveButton("Save",DialogInterface.OnClickListener{ _, id->
-                    val saveTitle = saveEditText.text.toString()
+                .setPositiveButton("Save") { _, id ->
+                    val saveTitle =
+                        saveEditText.text.toString() + getString(R.string.item_extra_text_session)
                     val date = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
                     val elapsed = binding.tvSessionElapsed.text.toString()
-                    val history = History(session = saveTitle, date = date, elapsedSession = elapsed)
-                        historyViewModel.insertHistory(history).also { finish() }
+                    val history =
+                        History(session = saveTitle, date = date, elapsedSession = elapsed)
+                    historyViewModel.insertHistory(history).also { finish() }
 
-
-
-//                    Coroutines.main {
-//                        val toast = Toast.makeText(this,"saved",Toast.LENGTH_SHORT)
-//                        toast.show()
-//                        historyViewModel.insertHistory(history).also {
-//                            finish() }
-//                    }
-
-
-                })
-                .setNegativeButton(R.string.cancel_alert,DialogInterface.OnClickListener{ _, id->
-                    val toast = Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
+                }
+                .setNegativeButton(R.string.cancel_alert) { _, id ->
+                    val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
                     toast.show()
-                })
+                }
             saveDialog.create()
             saveDialog.show()
         }
 
-
-
-
         binding.fabStop.setOnClickListener {
             val stopDialog = AlertDialog.Builder(this)
             stopDialog.setMessage("Do you want to stop the timer?")
-                .setPositiveButton(R.string.stop_alert,DialogInterface.OnClickListener{ _, id->
+                .setPositiveButton(R.string.stop_alert) { _, id ->
                     timerViewModel.resetTimer()
                     binding.progressCountdown.progress = 60 * 25
                     buttonState(false)
                     binding.btnSession.isVisible = true
+                    binding.mainToolbar.isVisible = true
 
 
-                })
-                .setNegativeButton(R.string.cancel_alert,DialogInterface.OnClickListener{ _, id->
-                    val toast = Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT)
+                }
+                .setNegativeButton(R.string.cancel_alert) { _, id ->
+                    val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
                     toast.show()
-                })
+                }
             stopDialog.create()
             stopDialog.show()
-
 
 
         }
@@ -226,7 +193,29 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getDate(){
+    private fun initPomod() {
+        binding.progressCountdown.max = 60 * 25
+        binding.progressCountdown.progress = 60 * 25
+    }
+
+    private fun initBreak() {
+        binding.progressCountdown.max = 60 * 1
+        binding.progressCountdown.progress = 60 * 1
+    }
+
+    private fun initMenu() {
+        binding.mainToolbar.inflateMenu(R.menu.main_menu)
+        binding.mainToolbar.setNavigationIcon(R.drawable.ic_back_arrow)
+        binding.mainToolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.mainToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.history -> {
+                    val intent = Intent(this, HistoryActivity::class.java).apply { }
+                    startActivity(intent)
+                }
+            }
+            true
+        }
 
     }
 

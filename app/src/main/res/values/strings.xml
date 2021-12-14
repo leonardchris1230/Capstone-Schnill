@@ -11,5 +11,7 @@
     <string name="cancel_alert">Cancel</string>
     <string name="stop_alert">Stop</string>
     <string name="elapsed_session_null">Session Elapsed : 0</string>
+    <string name="text_session_elapsed">Session Elapsed :</string>
+    <string name="item_extra_text_session">\'s Session</string>
 
 </resources>
