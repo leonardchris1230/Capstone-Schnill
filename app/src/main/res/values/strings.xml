@@ -13,5 +13,9 @@
     <string name="elapsed_session_null">Session Elapsed : 0</string>
     <string name="text_session_elapsed">Session Elapsed :</string>
     <string name="item_extra_text_session">\'s Session</string>
+    <string name="tv_elapsed">TV_elapsed</string>
+    <string name="stopfab">stopFAB</string>
+    <string name="startfab">startFAB</string>
+    <string name="savefab">saveFAB</string>
 
 </resources>

@@ -2,11 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/container_timer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellowish_schnill"
     tools:context="com.lazibear.capstone_schnill.ui.timer.MainActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/blue_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/blue_bg"
+        app:layout_constraintBottom_toTopOf="@id/btn_session"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -20,14 +30,6 @@
         app:title="@string/title_timer"
         app:titleTextColor="@color/white" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/blue_bg"
-        android:layout_width="match_parent"
-        android:layout_height="480dp"
-        android:src="@drawable/blue_bg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
         android:id="@+id/btn_session"
@@ -43,7 +45,7 @@
         android:id="@+id/tv_session_elapsed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="TV_elapsed"
+        android:contentDescription="@string/tv_elapsed"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,8 +60,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:textSize="70sp"
         android:textColor="@color/white"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="@id/progress_countdown"
         app:layout_constraintLeft_toLeftOf="@id/progress_countdown"
         app:layout_constraintRight_toRightOf="@id/progress_countdown"
@@ -86,6 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
+        android:contentDescription="@string/stopfab"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="@id/fab_save"
         app:layout_constraintLeft_toRightOf="@id/fab_start"
@@ -99,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-
+        android:contentDescription="@string/startfab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -113,7 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-
+        android:contentDescription="@string/savefab"
         app:layout_constraintBottom_toBottomOf="@id/fab_start"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintLeft_toRightOf="@id/fab_start"
@@ -125,13 +128,12 @@
         android:id="@+id/fab_explotion"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:visibility="visible"
         android:background="@drawable/fab_explotion"
-        app:layout_constraintTop_toTopOf="@id/fab_save"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/fab_save"
-        app:layout_constraintRight_toRightOf="@id/fab_save"
         app:layout_constraintLeft_toLeftOf="@id/fab_save"
-        />
+        app:layout_constraintRight_toRightOf="@id/fab_save"
+        app:layout_constraintTop_toTopOf="@id/fab_save" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
