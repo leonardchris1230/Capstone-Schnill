@@ -1,16 +1,55 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Capstone_Schnill" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Base application theme. -->  <style name="Theme.Capstone_Schnill" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/blue_schnill</item>
+    <item name="colorPrimaryVariant">@color/blue_schnill</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/lime_schnill</item>
+    <item name="colorSecondaryVariant">@color/ligtherlime_schnill</item>
+    <item name="colorOnSecondary">@color/white</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    <!-- Customize your theme here. -->
+    <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+    <item name="floatingActionButtonStyle">@style/FloatingActionButtonStyle</item>
+
+</style>
+
+    <style name="Theme.Capstone_Schnill_withBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/blue_schnill</item>
+        <item name="colorPrimaryVariant">@color/blue_schnill</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/lime_schnill</item>
+        <item name="colorSecondaryVariant">@color/ligtherlime_schnill</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="floatingActionButtonStyle">@style/FloatingActionButtonStyle</item>
+    </style>
+
+
+
+    <style name="splashscreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
+
+    <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/white</item>
+    </style>
+
+    <style name="FloatingActionButtonStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FABstyleTimer</item>
+        <item name="fabCustomSize">64dp</item>
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">12dp</item>
+    </style>
+
+    <style name="FABstyleTimer" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">20%</item>
+        <item name="cornerFamily">rounded</item>
     </style>
 </resources>

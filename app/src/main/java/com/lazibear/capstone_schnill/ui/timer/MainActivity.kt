@@ -11,14 +11,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.Settings
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.R
@@ -29,6 +34,7 @@ import com.lazibear.capstone_schnill.ui.history.HistoryActivity
 import com.lazibear.capstone_schnill.ui.history.HistoryViewModel
 import com.lazibear.capstone_schnill.utils.BREAK_DURATION
 import com.lazibear.capstone_schnill.utils.POMODORO_DURATION
+import com.lazibear.capstone_schnill.utils.startAnimation
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var historyViewModel: HistoryViewModel
+
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -105,8 +112,7 @@ class MainActivity : AppCompatActivity() {
             timerViewModel.startTimer()
             buttonState(true)
             binding.btnSession.isVisible = false
-            binding.mainToolbar.isVisible = false
-            initFade()
+//            initFade()
         }
 
         binding.fabSave.setOnClickListener {
@@ -124,7 +130,11 @@ class MainActivity : AppCompatActivity() {
                     val elapsed = binding.tvSessionElapsed.text.toString()
                     val history =
                         History(session = saveTitle, date = date, elapsedSession = elapsed)
-                    historyViewModel.insertHistory(history).also { finish() }
+                    historyViewModel.insertHistory(history).also {
+                        initAnimExplotion()
+                        invisibleView()
+                        val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
+                        toast.show()}
 
                 }
                 .setNegativeButton(R.string.cancel_alert) { _, id ->
@@ -145,7 +155,6 @@ class MainActivity : AppCompatActivity() {
                     binding.btnSession.isVisible = true
                     binding.mainToolbar.isVisible = true
 
-
                 }
                 .setNegativeButton(R.string.cancel_alert) { _, id ->
                     val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
@@ -160,13 +169,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun initFade() {
-        val colorFade = ObjectAnimator.ofObject(binding.container,"backgroundColor",
-            ArgbEvaluator(), R.style.Theme_Capstone_Schnill, R.color.black)
-        colorFade.setDuration(10000)
-        colorFade.startDelay
-        colorFade.start()
-    }
+//    private fun initFade() {
+//        val animationDrawable = AnimationDrawable(binding.container.background)
+//
+//        val colorFading = ObjectAnimator.ofObject(binding.container,"backgroundColor",ArgbEvaluator(),(255,255,255,255),R.color.yellowish_schnill)
+//        colorFading.setDuration(10000)
+//        colorFading.start()
+//    }
 
     private fun buttonState(isRunning: Boolean) {
         binding.fabStart.isEnabled = !isRunning
@@ -230,6 +239,34 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    private fun invisibleView(){
+        binding.mainToolbar.isVisible = false
+        binding.fabStart.isVisible = false
+        binding.fabStop.isVisible = false
+        binding.fabExplotion.isVisible=false
+        binding.tvSessionElapsed.isVisible = false
+        binding.textViewCountdown.isVisible = false
+        binding.btnSession.isVisible = false
+        binding.progressCountdown.isVisible = false
+        binding.blueBg.isVisible = false
+
+    }
+
+    private fun initAnimExplotion(){
+        val animation = AnimationUtils.loadAnimation(this,R.anim.fab_explotion_animation)
+            .apply {
+                duration = 1000
+                interpolator = AccelerateDecelerateInterpolator()
+            }
+        binding.fabExplotion.startAnimation(animation) {
+            binding.root.setBackgroundColor(ContextCompat.getColor(this,R.color.lime_schnill))
+            Handler().postDelayed({
+                finish()
+            }, 500)
+
+        }
     }
 
 
