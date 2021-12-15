@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityChoiceBinding
+import com.lazibear.capstone_schnill.ui.reminder.ReminderActivity
 import com.lazibear.capstone_schnill.ui.timer.MainActivity
 
 class ChoiceActivity : AppCompatActivity() {
@@ -25,8 +26,8 @@ class ChoiceActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java).apply {  }
             startActivity(intent)}
         binding.btnReminder.setOnClickListener {
-            val toast = Toast.makeText(this,"Reminder Act Soon",Toast.LENGTH_SHORT)
-            toast.show()
+            val intent = Intent (this, ReminderActivity::class.java).apply {  }
+            startActivity(intent)
         }
 
     }

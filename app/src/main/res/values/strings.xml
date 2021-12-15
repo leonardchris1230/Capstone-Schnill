@@ -18,4 +18,8 @@
     <string name="startfab">startFAB</string>
     <string name="savefab">saveFAB</string>
 
+
+    <string name="note">Note</string>
+    <string name="reminder_name">Reminder Name</string>
+
 </resources>
