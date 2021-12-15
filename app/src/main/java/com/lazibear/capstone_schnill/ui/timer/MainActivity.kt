@@ -1,5 +1,7 @@
 package com.lazibear.capstone_schnill.ui.timer
 
+import android.animation.ArgbEvaluator
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,6 +10,7 @@ import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.customView = binding.mainToolbar
         initMenu()
 
         binding.btnSession.text = getString(R.string.session_name_focus)
@@ -102,6 +106,7 @@ class MainActivity : AppCompatActivity() {
             buttonState(true)
             binding.btnSession.isVisible = false
             binding.mainToolbar.isVisible = false
+            initFade()
         }
 
         binding.fabSave.setOnClickListener {
@@ -153,6 +158,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun initFade() {
+        val colorFade = ObjectAnimator.ofObject(binding.container,"backgroundColor",
+            ArgbEvaluator(), R.style.Theme_Capstone_Schnill, R.color.black)
+        colorFade.setDuration(10000)
+        colorFade.startDelay
+        colorFade.start()
     }
 
     private fun buttonState(isRunning: Boolean) {

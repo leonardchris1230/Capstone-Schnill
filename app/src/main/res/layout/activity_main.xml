@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="@color/yellowish_schnill"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lazibear.capstone_schnill.ui.timer.MainActivity">
@@ -15,6 +16,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/blue_schnill"
+        app:title="@string/title_timer"
+        app:titleTextColor="@color/white"
+
+
        />
 
     <Button
@@ -46,11 +52,12 @@
         android:layout_gravity="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textSize="70sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29000002"
+        app:layout_constraintBottom_toBottomOf="@id/progress_countdown"
+        app:layout_constraintLeft_toLeftOf="@id/progress_countdown"
+        app:layout_constraintRight_toRightOf="@id/progress_countdown"
+        app:layout_constraintTop_toTopOf="@id/progress_countdown"
+        android:gravity="center"
+
         tools:text="10:00" />
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
