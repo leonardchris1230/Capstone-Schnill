@@ -5,7 +5,7 @@
     android:id="@+id/container_timer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellowish_schnill"
+    android:background="@drawable/yellow_bg_container"
     tools:context="com.lazibear.capstone_schnill.ui.timer.MainActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -42,11 +42,29 @@
         app:layout_constraintVertical_bias="0.39" />
 
     <TextView
+        android:id="@+id/title_elapsed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_session_elapsed"
+        android:text="@string/text_session_elapsed"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/white"/>
+
+
+    <TextView
         android:id="@+id/tv_session_elapsed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/tv_elapsed"
         android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/white"
+        android:text="@string/elapsed_null"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -94,7 +112,7 @@
         app:layout_constraintLeft_toRightOf="@id/fab_start"
         app:layout_constraintRight_toLeftOf="@id/fab_save"
         app:layout_constraintTop_toTopOf="@id/fab_start"
-        app:srcCompat="@drawable/ic_stop" />
+        app:srcCompat="@drawable/ic_stop_fill__1_" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -109,7 +127,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.84"
-        app:srcCompat="@drawable/ic_play_arrow" />
+        app:srcCompat="@drawable/ic_play_line__1_" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_save"
@@ -122,7 +140,7 @@
         app:layout_constraintLeft_toRightOf="@id/fab_start"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/fab_start"
-        app:srcCompat="@drawable/ic_history" />
+        app:srcCompat="@drawable/ic_save_line" />
 
     <View
         android:id="@+id/fab_explotion"

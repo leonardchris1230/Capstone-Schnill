@@ -47,6 +47,7 @@
         <item name="fabCustomSize">64dp</item>
         <item name="borderWidth">0dp</item>
         <item name="elevation">12dp</item>
+        <item name="background">@drawable/lime_bg_container</item>
     </style>
 
     <style name="FABstyleTimer" parent="ShapeAppearance.MaterialComponents.SmallComponent">

@@ -92,12 +92,7 @@ class MainActivity : AppCompatActivity() {
         //observer
         timerViewModel.currentTimeString.observe(this, { binding.textViewCountdown.text = it })
         timerViewModel.progressBarCD.observe(this, { binding.progressCountdown.progress = it })
-        timerViewModel.counterSession.observe(this, {
-            if (it == null) {
-                binding.tvSessionElapsed.text = getString(R.string.elapsed_session_null)
-            } else binding.tvSessionElapsed.text = getString(R.string.text_session_elapsed) + it
-
-        })
+        timerViewModel.counterSession.observe(this, { binding.tvSessionElapsed.text = it.toString() })
 
 
 
@@ -112,7 +107,6 @@ class MainActivity : AppCompatActivity() {
             timerViewModel.startTimer()
             buttonState(true)
             binding.btnSession.isVisible = false
-//            initFade()
         }
 
         binding.fabSave.setOnClickListener {
@@ -126,10 +120,9 @@ class MainActivity : AppCompatActivity() {
                 .setPositiveButton("Save") { _, id ->
                     val saveTitle =
                         saveEditText.text.toString() + getString(R.string.item_extra_text_session)
-                    val date = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-                    val elapsed = binding.tvSessionElapsed.text.toString()
-                    val history =
-                        History(session = saveTitle, date = date, elapsedSession = elapsed)
+                    val date = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
+                    val elapsed =  binding.tvSessionElapsed.text.toString()
+                    val history = History(session = saveTitle, date = date, elapsedSession = elapsed)
                     historyViewModel.insertHistory(history).also {
                         initAnimExplotion()
                         invisibleView()
@@ -168,14 +161,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-//    private fun initFade() {
-//        val animationDrawable = AnimationDrawable(binding.container.background)
-//
-//        val colorFading = ObjectAnimator.ofObject(binding.container,"backgroundColor",ArgbEvaluator(),(255,255,255,255),R.color.yellowish_schnill)
-//        colorFading.setDuration(10000)
-//        colorFading.start()
-//    }
 
     private fun buttonState(isRunning: Boolean) {
         binding.fabStart.isEnabled = !isRunning
@@ -251,6 +236,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnSession.isVisible = false
         binding.progressCountdown.isVisible = false
         binding.blueBg.isVisible = false
+        binding.titleElapsed.isVisible = false
 
     }
 

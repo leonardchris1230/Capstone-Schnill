@@ -20,7 +20,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -30,36 +29,52 @@
             app:layout_constraintEnd_toStartOf="@+id/elapsed_session_history"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="sans-serif-black"
             tools:text="Title" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/historyDate"
             android:layout_width="0dp"
+            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toStartOf="@id/txtTitleElapsed"
             android:textSize="16sp"
+           app:layout_constraintStart_toStartOf="@id/tvHistoryName"
+            app:layout_constraintTop_toBottomOf="@id/tvHistoryName"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHistoryName"
-            app:layout_constraintVertical_bias="0.0"
+            android:fontFamily="sans-serif-light"
+
             tools:text="Description" />
 
         <TextView
+            android:id="@+id/txtTitleElapsed"
+            app:layout_constraintStart_toEndOf="@id/historyDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/elapsed_session_item"
+            app:layout_constraintTop_toBottomOf="@id/tvHistoryName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/elapsed_session_history"/>
+
+
+
+        <TextView
+            android:fontFamily="sans-serif-condensed-light"
             android:id="@+id/elapsed_session_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvHistoryName"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="10" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
