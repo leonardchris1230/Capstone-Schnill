@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Schnill</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_timer">Timer</string>
+    <string name="history">History</string>
+    <string name="session_name_focus">Focus Session</string>
+    <string name="session_name_break">Break Session</string>
+    <string name="title_reminder">Reminder</string>
+    <string name="cancel_alert">Cancel</string>
+    <string name="stop_alert">Stop</string>
+    <string name="elapsed_session_item">session elapsed :  </string>
+    <string name="text_session_elapsed">Session elapsed   </string>
+    <string name="item_extra_text_session">Session</string>
+    <string name="tv_elapsed">TV_elapsed</string>
+    <string name="stopfab">stopFAB</string>
+    <string name="startfab">startFAB</string>
+    <string name="savefab">saveFAB</string>
+
+
+    <string name="note">Note</string>
+    <string name="reminder_name">Reminder Name</string>
+    <string name="welcome_to_schnill">Schnill</string>
+    <string name="choice_greeting">What brings you here today?</string>
+    <string name="title_greeting_logo">welcome to</string>
+    <string name="elapsed_null">0</string>
+    <string name="submit">Submit</string>
+
+</resources>
