@@ -38,21 +38,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_countdown"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71000004" />
 
     <TextView
         android:id="@+id/title_elapsed"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:text="@string/text_session_elapsed"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_session_elapsed"
-        android:text="@string/text_session_elapsed"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:textColor="@color/white"/>
+        app:layout_constraintTop_toBottomOf="@id/progress_countdown" />
 
 
     <TextView
@@ -60,16 +61,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/tv_elapsed"
-        android:textSize="24sp"
         android:fontFamily="sans-serif-condensed-light"
-        android:textColor="@color/white"
         android:text="@string/elapsed_null"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@id/blue_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57" />
+        app:layout_constraintTop_toBottomOf="@id/title_elapsed" />
 
     <TextView
         android:id="@+id/textView_countdown"
@@ -99,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22000003" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_stop"

@@ -1,35 +1,27 @@
 package com.lazibear.capstone_schnill.ui.reminder
 
-import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
+import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityReminderBinding
 import com.lazibear.capstone_schnill.notif.NotifReminder
 import com.lazibear.capstone_schnill.notif.NotifReminder.Companion.NAME_EXTRA
 import com.lazibear.capstone_schnill.notif.NotifReminder.Companion.NOTE_EXTRA
-import java.util.*
 import com.lazibear.capstone_schnill.notif.NotifReminder.Companion.NOTIFICATION_ID
 import com.lazibear.capstone_schnill.notif.NotifReminder.Companion.NOTIFICATION_ID_CHANNEL
+import java.util.*
 
 class ReminderActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityReminderBinding
 
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         createNotification()
         binding.btnSubmitReminder.setOnClickListener{ reminderNotification()}
@@ -50,13 +42,11 @@ class ReminderActivity : AppCompatActivity() {
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val time = getTime()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                time,
-                pendingIntent
-            )
-        }
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            pendingIntent
+        )
         showAlert( time, remindName, note)
 
     }
@@ -80,11 +70,7 @@ class ReminderActivity : AppCompatActivity() {
     }
 
     private fun getTime() : Long{
-        val minute = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding.pickerTime.minute
-        } else {
-            TODO("VERSION.SDK_INT < M")
-        }
+        val minute = binding.pickerTime.minute
         val hour = binding.pickerTime.hour
         val day = binding.pickerDate.dayOfMonth
         val month = binding.pickerDate.month
@@ -101,11 +87,7 @@ class ReminderActivity : AppCompatActivity() {
         val name = "Reminder Notification"
         val desc = "A Description of the Channel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val notifChannel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel(NOTIFICATION_ID_CHANNEL, name, importance)
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
+        val notifChannel = NotificationChannel(NOTIFICATION_ID_CHANNEL, name, importance)
         notifChannel.description = desc
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(notifChannel)

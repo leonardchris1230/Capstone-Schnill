@@ -25,5 +25,6 @@
     <string name="choice_greeting">What brings you here today?</string>
     <string name="title_greeting_logo">welcome to</string>
     <string name="elapsed_null">0</string>
+    <string name="submit">Submit</string>
 
 </resources>

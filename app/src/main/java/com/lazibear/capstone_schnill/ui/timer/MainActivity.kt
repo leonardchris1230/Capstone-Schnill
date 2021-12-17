@@ -1,7 +1,5 @@
 package com.lazibear.capstone_schnill.ui.timer
 
-import android.animation.ArgbEvaluator
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -10,8 +8,6 @@ import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-import android.graphics.Color
-import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -27,8 +23,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.R
-import com.lazibear.capstone_schnill.data.History
-import com.lazibear.capstone_schnill.data.HistoryViewModelFactory
+import com.lazibear.capstone_schnill.data.history.History
+import com.lazibear.capstone_schnill.data.history.HistoryViewModelFactory
 import com.lazibear.capstone_schnill.databinding.ActivityMainBinding
 import com.lazibear.capstone_schnill.ui.history.HistoryActivity
 import com.lazibear.capstone_schnill.ui.history.HistoryViewModel
@@ -106,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         binding.fabStart.setOnClickListener {
             timerViewModel.startTimer()
             buttonState(true)
-            binding.btnSession.isVisible = false
+            binding.btnSession.isEnabled = false
         }
 
         binding.fabSave.setOnClickListener {
@@ -145,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     timerViewModel.resetTimer()
                     binding.progressCountdown.progress = 60 * 25
                     buttonState(false)
-                    binding.btnSession.isVisible = true
+                    binding.btnSession.isEnabled = true
                     binding.mainToolbar.isVisible = true
 
                 }
@@ -165,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     private fun buttonState(isRunning: Boolean) {
         binding.fabStart.isEnabled = !isRunning
         binding.mainToolbar.isEnabled = !isRunning
-        binding.btnSession.isVisible = !isRunning
+        binding.btnSession.isEnabled = !isRunning
         binding.fabStop.isEnabled = isRunning
 
     }
@@ -206,8 +202,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initBreak() {
-        binding.progressCountdown.max = 60 * 1
-        binding.progressCountdown.progress = 60 * 1
+        binding.progressCountdown.max = 60 * 5
+        binding.progressCountdown.progress = 60 * 5
     }
 
     private fun initMenu() {

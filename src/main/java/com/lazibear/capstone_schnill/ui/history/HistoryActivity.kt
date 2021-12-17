@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lazibear.capstone_schnill.R
-import com.lazibear.capstone_schnill.data.history.HistoryViewModelFactory
+import com.lazibear.capstone_schnill.data.HistoryViewModelFactory
 import com.lazibear.capstone_schnill.databinding.ActivityHistoryBinding
 
 class HistoryActivity : AppCompatActivity() {
@@ -23,7 +23,6 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setTheme(R.style.Theme_Capstone_Schnill)
-
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initMenu()
@@ -45,7 +44,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun initMenu() {
-
+        binding.historyToolbar.inflateMenu(R.menu.main_menu)
         binding.historyToolbar.setNavigationIcon(R.drawable.ic_back_arrow)
         binding.historyToolbar.setNavigationOnClickListener { onBackPressed() }
 

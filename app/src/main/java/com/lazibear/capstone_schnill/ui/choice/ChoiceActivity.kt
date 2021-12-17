@@ -1,10 +1,12 @@
 package com.lazibear.capstone_schnill.ui.choice
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityChoiceBinding
 import com.lazibear.capstone_schnill.ui.reminder.ReminderActivity
@@ -13,6 +15,7 @@ import com.lazibear.capstone_schnill.ui.timer.MainActivity
 class ChoiceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChoiceBinding
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Capstone_Schnill)

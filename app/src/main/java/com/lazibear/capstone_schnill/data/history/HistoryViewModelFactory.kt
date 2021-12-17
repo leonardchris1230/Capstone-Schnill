@@ -1,7 +1,6 @@
-package com.lazibear.capstone_schnill.data
+package com.lazibear.capstone_schnill.data.history
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.ui.history.HistoryViewModel

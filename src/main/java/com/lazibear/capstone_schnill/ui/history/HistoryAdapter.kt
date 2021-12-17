@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.lazibear.capstone_schnill.data.history.History
+import com.lazibear.capstone_schnill.R
+import com.lazibear.capstone_schnill.data.History
 import com.lazibear.capstone_schnill.databinding.ItemHistoryBinding
 
 

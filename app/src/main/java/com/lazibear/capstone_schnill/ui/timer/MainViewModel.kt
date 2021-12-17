@@ -2,12 +2,10 @@ package com.lazibear.capstone_schnill.ui.timer
 
 import android.os.CountDownTimer
 import android.text.format.DateUtils
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.lazibear.capstone_schnill.data.HistoryRepository
 
 class MainViewModel(): ViewModel() {
 

@@ -1,9 +1,7 @@
-package com.lazibear.capstone_schnill.data
+package com.lazibear.capstone_schnill.data.history
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteQuery
-import javax.sql.DataSource
 
 
 @Dao

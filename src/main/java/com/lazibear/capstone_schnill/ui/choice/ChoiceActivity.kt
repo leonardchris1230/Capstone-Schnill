@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityChoiceBinding
 import com.lazibear.capstone_schnill.ui.reminder.ReminderActivity
@@ -15,7 +16,7 @@ class ChoiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Capstone_Schnill)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
 
         binding = ActivityChoiceBinding.inflate(layoutInflater)
@@ -26,7 +27,10 @@ class ChoiceActivity : AppCompatActivity() {
             startActivity(intent)}
         binding.btnReminder.setOnClickListener {
             val intent = Intent (this, ReminderActivity::class.java).apply {  }
-            startActivity(intent)}
+            startActivity(intent)
+//            val toast = Toast.makeText(this,"Reminder Act Soon",Toast.LENGTH_SHORT)
+//            toast.show()
+        }
 
     }
 }

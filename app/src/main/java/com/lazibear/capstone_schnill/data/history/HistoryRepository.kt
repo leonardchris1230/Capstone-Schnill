@@ -1,4 +1,4 @@
-package com.lazibear.capstone_schnill.data
+package com.lazibear.capstone_schnill.data.history
 
 import android.content.Context
 import androidx.lifecycle.LiveData

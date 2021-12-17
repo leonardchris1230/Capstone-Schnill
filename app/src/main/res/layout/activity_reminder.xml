@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ligtherlime_schnill"
+    android:background="@drawable/bg_reminder"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ui.reminder.ReminderActivity">
@@ -76,9 +76,12 @@
         android:id="@+id/btn_submit_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:text="Submit" />
+        android:background="@drawable/custom_btn"
+        android:text="@string/submit"
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
 
 
 

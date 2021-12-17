@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lazibear.capstone_schnill.R
-import com.lazibear.capstone_schnill.data.HistoryViewModelFactory
+import com.lazibear.capstone_schnill.data.history.HistoryViewModelFactory
 import com.lazibear.capstone_schnill.databinding.ActivityHistoryBinding
 
 class HistoryActivity : AppCompatActivity() {
