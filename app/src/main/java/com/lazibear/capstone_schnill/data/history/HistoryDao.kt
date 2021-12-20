@@ -22,5 +22,8 @@ interface HistoryDao {
     @Delete
     fun deleteHistory(habits: History)
 
+    @Query("delete from history_table")
+    fun deleteAllHistory()
+
 
 }

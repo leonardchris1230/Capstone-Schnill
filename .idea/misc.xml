@@ -27,16 +27,18 @@
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/yellow_bg_container.xml" value="0.2046875" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/yellow_bg_reversed.xml" value="0.14479166666666668" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_choice.xml" value="0.1" />
-        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_history.xml" value="0.2" />
-        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_history.xml" value="0.14814814814814814" />
+        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_main.xml" value="0.20675105485232068" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_reminder.xml" value="0.15760869565217392" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/blue_bg.xml" value="0.14356884057971014" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/content_timer.xml" value="0.22" />
+        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/custom_layout_alertbox_edittext.xml" value="0.20416666666666666" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/fragment_dashboard.xml" value="0.20416666666666666" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/fragment_history.xml" value="0.20416666666666666" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/fragment_timer.xml" value="0.1" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/item_history.xml" value="0.22" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/menu/history_menu.xml" value="0.1" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/menu/main_menu.xml" value="0.2" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.12962962962962962" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19166666666666668" />

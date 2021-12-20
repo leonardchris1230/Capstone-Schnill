@@ -2,11 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_history"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container_history"
-    android:background="@drawable/blue_bg_container"
+    android:background="@drawable/yellow_bg_container"
     tools:context=".ui.history.HistoryActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/blue_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@drawable/blue_bg"
+        app:layout_constraintBottom_toTopOf="@id/historyRV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/history_toolbar"
@@ -17,21 +30,60 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/history"
         app:titleTextColor="@color/white" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/historyRV"
-        app:layout_constraintTop_toBottomOf="@id/history_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="240dp"
         android:clipToPadding="false"
-        android:layout_marginTop="?attr/actionBarSize"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_history" />
 
+    <TextView
+        android:id="@+id/title_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/history"
+        android:textColor="@color/white"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/blue_bg"
+        app:layout_constraintLeft_toLeftOf="@id/blue_bg"
+        app:layout_constraintRight_toRightOf="@id/blue_bg"
+        app:layout_constraintTop_toBottomOf="@id/history_toolbar"
+        app:layout_constraintVertical_bias="0.2" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/subtitle_history"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/blue_bg"
+        app:layout_constraintLeft_toLeftOf="@id/blue_bg"
+        app:layout_constraintRight_toRightOf="@id/blue_bg"
+        app:layout_constraintTop_toBottomOf="@id/title_history"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/null_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/rv_history_null"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blue_bg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

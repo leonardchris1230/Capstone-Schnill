@@ -32,12 +32,3 @@ class HistoryViewModelFactory(
         }
 }
 
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        try {
-//            val constructor = modelClass.getDeclaredConstructor(HistoryRepository::class.java)
-//            return constructor.newInstance(repository)
-//        } catch (e: Exception) {
-//            Log.e("THIS ERROR", "ERROR -> ${e.message.toString()}")
-//        }
-//        return super.create(modelClass)
-//    }

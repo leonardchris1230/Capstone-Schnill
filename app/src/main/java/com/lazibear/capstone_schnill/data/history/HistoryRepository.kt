@@ -35,8 +35,11 @@ class HistoryRepository(private val historyDao: HistoryDao, private val executor
         }
     }
 
+    fun deleteHistory() {
+        executor.execute { historyDao.deleteAllHistory() }
+    }
 
-    suspend fun deleteNote(history: History) = historyDao.deleteHistory(history)
+
 
     fun getAllHistory(): LiveData<List<History>> = historyDao.getAllHistory()
 }

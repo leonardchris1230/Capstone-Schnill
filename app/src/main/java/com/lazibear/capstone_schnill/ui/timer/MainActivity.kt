@@ -12,15 +12,19 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
+import android.view.Gravity
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.view.marginEnd
+import androidx.core.view.marginStart
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.data.history.History
@@ -42,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var historyViewModel: HistoryViewModel
-
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -88,7 +91,9 @@ class MainActivity : AppCompatActivity() {
         //observer
         timerViewModel.currentTimeString.observe(this, { binding.textViewCountdown.text = it })
         timerViewModel.progressBarCD.observe(this, { binding.progressCountdown.progress = it })
-        timerViewModel.counterSession.observe(this, { binding.tvSessionElapsed.text = it.toString() })
+        timerViewModel.counterSession.observe(
+            this,
+            { binding.tvSessionElapsed.text = it.toString() })
 
 
 
@@ -106,32 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fabSave.setOnClickListener {
-
-            val saveDialog = AlertDialog.Builder(this)
-            val saveEditText = EditText(this)
-
-            saveDialog.setMessage("Name your session")
-                .setTitle("Do you want to save this session?")
-                .setView(saveEditText)
-                .setPositiveButton("Save") { _, id ->
-                    val saveTitle =
-                        saveEditText.text.toString() + getString(R.string.item_extra_text_session)
-                    val date = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
-                    val elapsed =  binding.tvSessionElapsed.text.toString()
-                    val history = History(session = saveTitle, date = date, elapsedSession = elapsed)
-                    historyViewModel.insertHistory(history).also {
-                        initAnimExplotion()
-                        invisibleView()
-                        val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
-                        toast.show()}
-
-                }
-                .setNegativeButton(R.string.cancel_alert) { _, id ->
-                    val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
-                    toast.show()
-                }
-            saveDialog.create()
-            saveDialog.show()
+            initSave()
         }
 
         binding.fabStop.setOnClickListener {
@@ -222,11 +202,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun invisibleView(){
+    private fun invisibleView() {
         binding.mainToolbar.isVisible = false
         binding.fabStart.isVisible = false
         binding.fabStop.isVisible = false
-        binding.fabExplotion.isVisible=false
+        binding.fabExplotion.isVisible = false
         binding.tvSessionElapsed.isVisible = false
         binding.textViewCountdown.isVisible = false
         binding.btnSession.isVisible = false
@@ -236,19 +216,57 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun initAnimExplotion(){
-        val animation = AnimationUtils.loadAnimation(this,R.anim.fab_explotion_animation)
+    private fun initAnimExplotion() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.fab_explotion_animation)
             .apply {
                 duration = 1000
                 interpolator = AccelerateDecelerateInterpolator()
             }
         binding.fabExplotion.startAnimation(animation) {
-            binding.root.setBackgroundColor(ContextCompat.getColor(this,R.color.lime_schnill))
+            binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.lime_schnill))
             Handler().postDelayed({
                 finish()
             }, 500)
 
         }
+    }
+
+    private fun initSave(){
+        val saveDialog = AlertDialog.Builder(this)
+        val saveEditText = EditText(this)
+        saveEditText.isSingleLine = true
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+        layout.gravity = Gravity.CENTER
+        layout.setPadding(50,0,50,0)
+        layout.addView(saveEditText)
+
+
+        saveDialog.setMessage("Name your session")
+            .setTitle("Do you want to save this session?")
+            .setView(layout)
+            .setPositiveButton("Save") { _, id ->
+                val saveTitle =
+                    saveEditText.text.toString() + getString(R.string.item_extra_text_session)
+                val date =
+                    SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
+                val elapsed = binding.tvSessionElapsed.text.toString()
+                val history =
+                    History(session = saveTitle, date = date, elapsedSession = elapsed)
+                historyViewModel.insertHistory(history).also {
+                    initAnimExplotion()
+                    invisibleView()
+                    val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
+                    toast.show()
+                }
+
+            }
+            .setNegativeButton(R.string.cancel_alert) { _, id ->
+                val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+                toast.show()
+            }
+        saveDialog.create()
+        saveDialog.show()
     }
 
 

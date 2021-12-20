@@ -12,7 +12,7 @@
     <string name="stop_alert">Stop</string>
     <string name="elapsed_session_item">session elapsed :  </string>
     <string name="text_session_elapsed">Session elapsed   </string>
-    <string name="item_extra_text_session">Session</string>
+    <string name="item_extra_text_session">\u0020 session</string>
     <string name="tv_elapsed">TV_elapsed</string>
     <string name="stopfab">stopFAB</string>
     <string name="startfab">startFAB</string>
@@ -26,5 +26,8 @@
     <string name="title_greeting_logo">welcome to</string>
     <string name="elapsed_null">0</string>
     <string name="submit">Submit</string>
+    <string name="delete_all">Delete All</string>
+    <string name="rv_history_null">You don\'t have any session yet~</string>
+    <string name="subtitle_history">your saved sessions will be listed here</string>
 
 </resources>

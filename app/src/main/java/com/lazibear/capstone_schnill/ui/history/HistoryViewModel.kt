@@ -10,5 +10,7 @@ class HistoryViewModel (
 
     fun insertHistory(history: History) = repository.insertHistory(history)
 
+    fun deleteHistory() = repository.deleteHistory()
+
     fun getAllHistory() = repository.getAllHistory()
 }

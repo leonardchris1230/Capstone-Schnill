@@ -39,7 +39,7 @@ abstract class HistoryDatabase: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     HistoryDatabase::class.java,
-                    "habits.db"
+                    "history.db"
                 )
                     .addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
