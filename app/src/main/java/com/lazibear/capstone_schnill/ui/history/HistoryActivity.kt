@@ -1,12 +1,17 @@
 package com.lazibear.capstone_schnill.ui.history
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lazibear.capstone_schnill.R
@@ -60,18 +65,19 @@ class HistoryActivity : AppCompatActivity() {
         binding.historyToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.deleteAll -> {
-                    val stopDialog = AlertDialog.Builder(this)
-                    stopDialog.setMessage("This action will clear all your history, are you sure?")
-                        .setPositiveButton("YES") { _, _ ->
-                            historyViewModel.deleteHistory()
-                            finish()
-                        }
-                        .setNegativeButton(R.string.cancel_alert) { _, _ ->
-                            val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
-                            toast.show()
-                        }
-                    stopDialog.create()
-                    stopDialog.show()
+                    initDelete()
+//                    val stopDialog = AlertDialog.Builder(this)
+//                    stopDialog.setMessage("This action will clear all your history, are you sure?")
+//                        .setPositiveButton("YES") { _, _ ->
+//                            historyViewModel.deleteHistory()
+//                            finish()
+//                        }
+//                        .setNegativeButton(R.string.cancel_alert) { _, _ ->
+//                            val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+//                            toast.show()
+//                        }
+//                    stopDialog.create()
+//                    stopDialog.show()
 
                 }
             }
@@ -79,5 +85,30 @@ class HistoryActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun initDelete() {
+        val stopDialog = Dialog(this)
+        stopDialog.setContentView(R.layout.alert_deletehistory)
+        stopDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btnYes = stopDialog.findViewById<TextView>(R.id.alert_del_yes)
+        val btnCancel = stopDialog.findViewById<TextView>(R.id.alert_del_cancel)
+
+
+        btnYes.setOnClickListener {
+            historyViewModel.deleteHistory()
+            val toast = Toast.makeText(this, "History cleared", Toast.LENGTH_SHORT)
+            toast.show()
+            finish()
+            stopDialog.dismiss()
+        }
+        btnCancel.setOnClickListener {
+            val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+            toast.show()
+            stopDialog.dismiss()
+        }
+
+        stopDialog.create()
+        stopDialog.show()
     }
 }

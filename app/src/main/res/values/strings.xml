@@ -8,8 +8,8 @@
     <string name="session_name_focus">Focus Session</string>
     <string name="session_name_break">Break Session</string>
     <string name="title_reminder">Reminder</string>
-    <string name="cancel_alert">Cancel</string>
-    <string name="stop_alert">Stop</string>
+    <string name="cancel_alert">CANCEL</string>
+    <string name="stop_alert">STOP</string>
     <string name="elapsed_session_item">session elapsed :  </string>
     <string name="text_session_elapsed">Session elapsed   </string>
     <string name="item_extra_text_session">\u0020 session</string>
@@ -29,5 +29,15 @@
     <string name="delete_all">Delete All</string>
     <string name="rv_history_null">You don\'t have any session yet~</string>
     <string name="subtitle_history">your saved sessions will be listed here</string>
+    <string name="delete">DELETE</string>
+    <string name="history_title">HISTORY?</string>
+    <string name="alert_del_history">THIS ACTION WILL DELETE ALL HISTORY</string>
+    <string name="alert_stop_dialog">DO YOU WANT TO STOP THE TIMER?</string>
+    <string name="yes">YES</string>
+    <string name="save">SAVE</string>
+    <string name="save_subtitle">THIS SESSION?</string>
+    <string name="save_subtitle_2">NAME YOUR SESSION</string>
+    <string name="session_s_name">Session\'s Name</string>
+    <string name="alert_subtitle_stop_2">TIMER?</string>
 
 </resources>

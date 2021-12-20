@@ -1,13 +1,12 @@
 package com.lazibear.capstone_schnill.ui.timer
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -15,9 +14,7 @@ import android.provider.Settings
 import android.view.Gravity
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -96,7 +93,6 @@ class MainActivity : AppCompatActivity() {
             { binding.tvSessionElapsed.text = it.toString() })
 
 
-
         timerViewModel.eventCountDownFinish.observe(this, {
             buttonState(false)
             binding.btnSession.isVisible = it
@@ -115,20 +111,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fabStop.setOnClickListener {
-            val stopDialog = AlertDialog.Builder(this)
-            stopDialog.setMessage("Do you want to stop the timer?")
-                .setPositiveButton(R.string.stop_alert) { _, id ->
-                    timerViewModel.resetTimer()
-                    binding.progressCountdown.progress = 60 * 25
-                    buttonState(false)
-                    binding.btnSession.isEnabled = true
-                    binding.mainToolbar.isVisible = true
+            val stopDialog = Dialog(this)
+            stopDialog.setContentView(R.layout.alert_timerstop)
+            stopDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val btnYes = stopDialog.findViewById<TextView>(R.id.alert_STOP_YES)
+            val btnCancel = stopDialog.findViewById<TextView>(R.id.alert_stop_cancel)
 
-                }
-                .setNegativeButton(R.string.cancel_alert) { _, id ->
-                    val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
-                    toast.show()
-                }
+
+            btnYes.setOnClickListener {
+                timerViewModel.resetTimer()
+                binding.progressCountdown.progress = 60 * 25
+                buttonState(false)
+                binding.btnSession.isEnabled = true
+                binding.mainToolbar.isVisible = true
+                stopDialog.dismiss()
+            }
+            btnCancel.setOnClickListener {
+                stopDialog.dismiss()
+            }
+
             stopDialog.create()
             stopDialog.show()
 
@@ -137,6 +138,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun buttonState(isRunning: Boolean) {
         binding.fabStart.isEnabled = !isRunning
@@ -231,46 +233,79 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initSave(){
-        val saveDialog = AlertDialog.Builder(this)
-        val saveEditText = EditText(this)
-        saveEditText.isSingleLine = true
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.gravity = Gravity.CENTER
-        layout.setPadding(50,0,50,0)
-        layout.addView(saveEditText)
+    private fun initSave() {
+        val saveDialog = Dialog(this)
+        saveDialog.setContentView(R.layout.alert_savingsessions)
+        saveDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btnYes = saveDialog.findViewById<TextView>(R.id.alert_save_yes)
+        val btnCancel = saveDialog.findViewById<TextView>(R.id.alert_save_cancel)
+        val edtSave = saveDialog.findViewById<EditText>(R.id.edt_save_session)
 
 
-        saveDialog.setMessage("Name your session")
-            .setTitle("Do you want to save this session?")
-            .setView(layout)
-            .setPositiveButton("Save") { _, id ->
-                val saveTitle =
-                    saveEditText.text.toString() + getString(R.string.item_extra_text_session)
-                val date =
-                    SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
-                val elapsed = binding.tvSessionElapsed.text.toString()
-                val history =
-                    History(session = saveTitle, date = date, elapsedSession = elapsed)
-                historyViewModel.insertHistory(history).also {
-                    initAnimExplotion()
-                    invisibleView()
-                    val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
-                    toast.show()
-                }
-
-            }
-            .setNegativeButton(R.string.cancel_alert) { _, id ->
-                val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+        btnYes.setOnClickListener {
+            val saveTitle =
+                edtSave.text.toString() + getString(R.string.item_extra_text_session)
+            val date =
+                SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
+            val elapsed = binding.tvSessionElapsed.text.toString()
+            val history =
+                History(session = saveTitle, date = date, elapsedSession = elapsed)
+            historyViewModel.insertHistory(history).also {
+                initAnimExplotion()
+                invisibleView()
+                val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
                 toast.show()
+                saveDialog.dismiss()
             }
+        }
+        btnCancel.setOnClickListener {
+            val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+            toast.show()
+            saveDialog.dismiss()
+        }
         saveDialog.create()
         saveDialog.show()
     }
 
 
-}
+//        val saveDialog = AlertDialog.Builder(this)
+//        val saveEditText = EditText(this)
+//        saveEditText.isSingleLine = true
+//        val layout = LinearLayout(this)
+//        layout.orientation = LinearLayout.VERTICAL
+//        layout.gravity = Gravity.CENTER
+//        layout.setPadding(50,0,50,0)
+//        layout.addView(saveEditText)
+//
+//
+//        saveDialog.setMessage("Name your session")
+//            .setTitle("Do you want to save this session?")
+//            .setView(layout)
+//            .setPositiveButton("Save") { _, id ->
+//                val saveTitle =
+//                    saveEditText.text.toString() + getString(R.string.item_extra_text_session)
+//                val date =
+//                    SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
+//                val elapsed = binding.tvSessionElapsed.text.toString()
+//                val history =
+//                    History(session = saveTitle, date = date, elapsedSession = elapsed)
+//                historyViewModel.insertHistory(history).also {
+//                    initAnimExplotion()
+//                    invisibleView()
+//                    val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
+//                    toast.show()
+//                }
+//
+//            }
+//            .setNegativeButton(R.string.cancel_alert) { _, id ->
+//                val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+//                toast.show()
+//            }
+
+
+
+    }
+
 
 
 
