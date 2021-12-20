@@ -32,6 +32,7 @@
 
 
     <Button
+        android:fontFamily="sans-serif-condensed-light"
         android:id="@+id/btn_session"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,12 +80,12 @@
         android:gravity="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
+        android:fontFamily="sans-serif-condensed-light"
         android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="@id/progress_countdown"
         app:layout_constraintLeft_toLeftOf="@id/progress_countdown"
         app:layout_constraintRight_toRightOf="@id/progress_countdown"
         app:layout_constraintTop_toTopOf="@id/progress_countdown"
-
         tools:text="10:00" />
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar

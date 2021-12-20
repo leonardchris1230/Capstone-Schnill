@@ -39,5 +39,6 @@
     <string name="save_subtitle_2">NAME YOUR SESSION</string>
     <string name="session_s_name">Session\'s Name</string>
     <string name="alert_subtitle_stop_2">TIMER?</string>
+    <string name="about">About</string>
 
 </resources>

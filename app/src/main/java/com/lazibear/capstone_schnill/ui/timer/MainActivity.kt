@@ -268,39 +268,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//        val saveDialog = AlertDialog.Builder(this)
-//        val saveEditText = EditText(this)
-//        saveEditText.isSingleLine = true
-//        val layout = LinearLayout(this)
-//        layout.orientation = LinearLayout.VERTICAL
-//        layout.gravity = Gravity.CENTER
-//        layout.setPadding(50,0,50,0)
-//        layout.addView(saveEditText)
-//
-//
-//        saveDialog.setMessage("Name your session")
-//            .setTitle("Do you want to save this session?")
-//            .setView(layout)
-//            .setPositiveButton("Save") { _, id ->
-//                val saveTitle =
-//                    saveEditText.text.toString() + getString(R.string.item_extra_text_session)
-//                val date =
-//                    SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(Date())
-//                val elapsed = binding.tvSessionElapsed.text.toString()
-//                val history =
-//                    History(session = saveTitle, date = date, elapsedSession = elapsed)
-//                historyViewModel.insertHistory(history).also {
-//                    initAnimExplotion()
-//                    invisibleView()
-//                    val toast = Toast.makeText(this, "Session Saved!", Toast.LENGTH_LONG)
-//                    toast.show()
-//                }
-//
-//            }
-//            .setNegativeButton(R.string.cancel_alert) { _, id ->
-//                val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
-//                toast.show()
-//            }
 
 
 
