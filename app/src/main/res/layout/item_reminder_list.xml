@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_constraint_reminder"
+        android:layout_width="match_parent"
+       android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingTop="8dp"
+        android:layout_height="150dp">
+
+        <TextView
+            android:fontFamily="sans-serif-condensed-light"
+            android:textStyle="bold"
+            android:id="@+id/tv_todo_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="6dp"
+            tools:text="@tools:sample/lorem"
+            app:layout_constraintTop_toTopOf="@id/container_constraint_reminder"
+            app:layout_constraintLeft_toLeftOf="@id/container_constraint_reminder"
+            app:layout_constraintRight_toRightOf="@id/container_constraint_reminder"/>
+
+        <TextView
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-condensed-light"
+            android:id="@+id/tv_note_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:contentDescription="@string/note"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_title"
+            app:layout_constraintStart_toStartOf="@id/tv_todo_title"
+            app:layout_constraintRight_toRightOf="@id/container_constraint_reminder" />
+
+
+        <TextView
+            android:id="@+id/tv_todo_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:drawableStartCompat="@drawable/ic_calendar_todo_fill_black"
+            app:layout_constraintBottom_toBottomOf="@id/container_constraint_reminder"
+            app:layout_constraintStart_toStartOf="@id/tv_todo_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_note_reminder"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <TextView
+            android:id="@+id/tv_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_clock"
+            android:fontFamily="sans-serif-condensed-light"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_date"
+            app:layout_constraintStart_toEndOf="@id/tv_todo_date"
+            app:layout_constraintEnd_toEndOf="@id/container_constraint_reminder"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_date"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

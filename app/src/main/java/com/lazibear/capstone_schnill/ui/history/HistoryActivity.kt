@@ -66,19 +66,6 @@ class HistoryActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.deleteAll -> {
                     initDelete()
-//                    val stopDialog = AlertDialog.Builder(this)
-//                    stopDialog.setMessage("This action will clear all your history, are you sure?")
-//                        .setPositiveButton("YES") { _, _ ->
-//                            historyViewModel.deleteHistory()
-//                            finish()
-//                        }
-//                        .setNegativeButton(R.string.cancel_alert) { _, _ ->
-//                            val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
-//                            toast.show()
-//                        }
-//                    stopDialog.create()
-//                    stopDialog.show()
-
                 }
             }
             true

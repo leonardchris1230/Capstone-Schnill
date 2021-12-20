@@ -11,6 +11,7 @@ import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.databinding.ActivityChoiceBinding
 import com.lazibear.capstone_schnill.ui.about.AboutActivity
 import com.lazibear.capstone_schnill.ui.reminder.ReminderActivity
+import com.lazibear.capstone_schnill.ui.reminder.ReminderListActivity
 import com.lazibear.capstone_schnill.ui.timer.MainActivity
 
 class ChoiceActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class ChoiceActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java).apply {  }
             startActivity(intent)}
         binding.btnReminder.setOnClickListener {
-            val intent = Intent (this, ReminderActivity::class.java).apply {  }
+            val intent = Intent (this, ReminderListActivity::class.java).apply {  }
             startActivity(intent)
         }
 

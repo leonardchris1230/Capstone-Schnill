@@ -1,88 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_reminder"
+    android:background="@drawable/yellow_bg_container"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ui.reminder.ReminderActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/reminder_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lime_schnill"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/Theme.Schnill.PopupOverlay" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeable_bg_reminder_date"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/blue_bg"
+        app:layout_constraintBottom_toTopOf="@id/btn_submit_reminder"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reminder_toolbar" />
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeable_bg_reminder_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/lime_bg"
+        app:layout_constraintBottom_toTopOf="@id/ed_add_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:text="Create Reminder"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@id/shapeable_bg_reminder_title"
+        app:layout_constraintLeft_toLeftOf="@id/shapeable_bg_reminder_title"
+        app:layout_constraintRight_toRightOf="@id/shapeable_bg_reminder_title"
+        app:layout_constraintTop_toBottomOf="@id/reminder_toolbar"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ed_add_layout"
+        android:background="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reminder_toolbar">
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_ed_remind_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/reminder_name"
-            android:maxLines="1"
-            android:maxLength="255"/>
+            android:maxLength="20"
+            android:lines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ed_add_note_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        android:layout_marginStart="20dp"
+        android:background="@color/white"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_add_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_ed_remind_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="top"
             android:hint="@string/note"
             android:lines="4"
-            android:gravity="top"
-            android:maxLength="255"/>
+            android:maxLength="100" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <DatePicker
+        android:id="@+id/picker_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:calendarTextColor="@color/white"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:scaleX="1"
+        android:scaleY="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_add_note_layout" />
 
-        <DatePicker
-            android:id="@+id/picker_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"
-            android:layout_gravity="center"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:layout_marginLeft="-20dp"
-            android:layout_marginRight="-20dp"/>
+    <TimePicker
+        android:id="@+id/picker_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        app:layout_constraintBottom_toBottomOf="@id/shapeable_bg_reminder_date"
+        app:layout_constraintEnd_toEndOf="@id/picker_date"
+        app:layout_constraintStart_toStartOf="@id/picker_date"
+        app:layout_constraintTop_toBottomOf="@id/picker_date" />
 
-        <TimePicker
-            android:id="@+id/picker_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:datePickerMode="spinner"
-            android:layout_gravity="center"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            android:layout_marginLeft="-20dp"
-            android:layout_marginRight="-20dp"/>
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/btn_submit_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:background="@drawable/custom_btn"
-        android:text="@string/submit"
+        android:layout_margin="10dp"
+        android:text="@string/create"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        android:textColor="@color/white"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

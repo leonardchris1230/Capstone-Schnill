@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_bg_container"
+    tools:context=".ui.reminder.ReminderListActivity">
+
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeable_bg_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@drawable/lime_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rv_reminder" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/reminder_toolbar"
+            android:layout_width="match_parent"
+            android:background="@color/lime_schnill"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/Theme.Schnill.PopupOverlay"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/title_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/shapeable_bg_reminder"
+        app:layout_constraintRight_toRightOf="@id/shapeable_bg_reminder"
+        app:layout_constraintTop_toBottomOf="@id/reminder_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/shapeable_bg_reminder"
+        android:text="Reminder"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/black"
+        android:textSize="64sp"
+        app:layout_constraintVertical_bias="0.2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/subtitle_reminder"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/shapeable_bg_reminder"
+        app:layout_constraintLeft_toLeftOf="@id/shapeable_bg_reminder"
+        app:layout_constraintRight_toRightOf="@id/shapeable_bg_reminder"
+        app:layout_constraintTop_toBottomOf="@id/title_reminder"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/null_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:text="@string/null_reminder"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shapeable_bg_reminder"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="240dp"
+        android:id="@+id/rv_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_reminder_list" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_add"
+        android:contentDescription="@string/fabaddreminder" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

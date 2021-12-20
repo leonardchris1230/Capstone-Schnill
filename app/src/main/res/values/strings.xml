@@ -40,5 +40,13 @@
     <string name="session_s_name">Session\'s Name</string>
     <string name="alert_subtitle_stop_2">TIMER?</string>
     <string name="about">About</string>
+    <string name="empty_list_message">empty</string>
+    <string name="fabaddreminder">fabAddReminder</string>
+    <string name="subtitle_reminder">yours will be listed here</string>
+    <string name="create">CREATE</string>
+    <string name="save_reminder">THIS REMINDER?</string>
+    <string name="null_reminder">THERE IS NO REMINDER YET</string>
+    <string name="all_reminder">ALL REMINDER?</string>
+    <string name="alert_del_reminder">THIS ACTION WILL DELETE ALL REMINDERS</string>
 
 </resources>

@@ -28,7 +28,7 @@ class HistoryRepository(private val historyDao: HistoryDao, private val executor
         }
     }
 
-    //     fun insertHistory(history: History) = historyDatabase.historyDao().insertHistory(history)
+
     fun insertHistory(history: History) {
         executor.execute{
             historyDao.insertHistory(history)
