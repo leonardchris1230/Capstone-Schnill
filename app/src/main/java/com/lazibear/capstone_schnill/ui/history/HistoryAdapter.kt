@@ -9,7 +9,7 @@ import com.lazibear.capstone_schnill.data.history.History
 import com.lazibear.capstone_schnill.databinding.ItemHistoryBinding
 
 
-class HistoryAdapter() :
+class HistoryAdapter :
     ListAdapter<History, HistoryAdapter.HistoryViewHolder>(DiffUtilNote()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {

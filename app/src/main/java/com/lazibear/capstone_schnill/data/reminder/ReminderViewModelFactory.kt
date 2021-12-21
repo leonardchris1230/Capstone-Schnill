@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.ui.reminder.ReminderViewModel
 
-class ReminderViewModelFactory (private val reminderRepository: ReminderRepository): ViewModelProvider.Factory {
+class ReminderViewModelFactory(private val reminderRepository: ReminderRepository) :
+    ViewModelProvider.Factory {
 
     companion object {
         @Volatile

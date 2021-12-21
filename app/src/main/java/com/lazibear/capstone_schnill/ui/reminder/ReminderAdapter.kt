@@ -9,14 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lazibear.capstone_schnill.data.reminder.Reminder
 import com.lazibear.capstone_schnill.databinding.ItemReminderListBinding
 
-class ReminderAdapter() :
+class ReminderAdapter :
     ListAdapter<Reminder, ReminderAdapter.ReminderViewHolder>(DiffUtilNote()) {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ReminderViewHolder{
-        val itemReminder = ItemReminderListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolder {
+        val itemReminder =
+            ItemReminderListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ReminderViewHolder(itemReminder)
     }
+
     override fun onBindViewHolder(holder: ReminderViewHolder, position: Int) {
         val item = getItem(position)
         holder.bindItem(item)
@@ -48,7 +50,6 @@ class ReminderAdapter() :
             return newItem == oldItem
         }
     }
-
 
 
 }

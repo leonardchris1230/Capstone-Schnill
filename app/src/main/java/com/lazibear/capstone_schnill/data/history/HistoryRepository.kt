@@ -30,7 +30,7 @@ class HistoryRepository(private val historyDao: HistoryDao, private val executor
 
 
     fun insertHistory(history: History) {
-        executor.execute{
+        executor.execute {
             historyDao.insertHistory(history)
         }
     }
@@ -38,7 +38,6 @@ class HistoryRepository(private val historyDao: HistoryDao, private val executor
     fun deleteHistory() {
         executor.execute { historyDao.deleteAllHistory() }
     }
-
 
 
     fun getAllHistory(): LiveData<List<History>> = historyDao.getAllHistory()

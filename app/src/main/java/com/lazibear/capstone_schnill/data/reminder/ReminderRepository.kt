@@ -5,24 +5,29 @@ import androidx.lifecycle.LiveData
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class ReminderRepository(private val reminderDao: ReminderDao, private val executors: ExecutorService) {
+class ReminderRepository(
+    private val reminderDao: ReminderDao,
+    private val executors: ExecutorService
+) {
 
     fun getAllReminder(): LiveData<List<Reminder>> = reminderDao.getAllReminder()
 
-    fun insertReminder(reminder: Reminder){
-        executors.execute{
+    fun insertReminder(reminder: Reminder) {
+        executors.execute {
             reminderDao.insertReminder(reminder)
         }
     }
 
-    fun deleteAllReminder(){
+    fun deleteAllReminder() {
         executors.execute { reminderDao.deleteAllList() }
     }
+
     fun deleteReminder(reminder: Reminder) = reminderDao.deleteReminder(reminder)
-    companion object{
+
+    companion object {
 
         @Volatile
-        private var instance: ReminderRepository?= null
+        private var instance: ReminderRepository? = null
 
         fun getInstance(context: Context): ReminderRepository {
             return instance ?: synchronized(this) {

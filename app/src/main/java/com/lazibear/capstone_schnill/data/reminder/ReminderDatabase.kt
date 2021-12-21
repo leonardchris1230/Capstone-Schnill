@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 
 abstract class ReminderDatabase : RoomDatabase() {
 
-    abstract fun reminderDao() : ReminderDao
+    abstract fun reminderDao(): ReminderDao
 
     companion object {
         @Volatile
@@ -17,9 +17,9 @@ abstract class ReminderDatabase : RoomDatabase() {
         private var INSTANCE: ReminderDatabase? = null
 
         fun getInstance(context: Context): ReminderDatabase {
-            return synchronized(this){
+            return synchronized(this) {
                 var instance = INSTANCE
-                if(instance== null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         ReminderDatabase::class.java,

@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-@Entity(tableName ="history_table")
+@Entity(tableName = "history_table")
 data class History(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -26,6 +26,6 @@ data class History(
 
     @ColumnInfo(name = "elapsedSession")
     @NonNull
-    val elapsedSession:String,
+    val elapsedSession: String,
 
-): Parcelable
+    ) : Parcelable

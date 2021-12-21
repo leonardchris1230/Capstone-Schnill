@@ -1,7 +1,6 @@
 package com.lazibear.capstone_schnill.notif
 
 
-
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -18,22 +17,16 @@ class NotifReminder : BroadcastReceiver() {
             .setContentText(intent.getStringExtra(NOTE_EXTRA))
             .build()
 
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
-    companion object{
+
+    companion object {
         const val NOTIFICATION_ID = 1
         const val NOTIFICATION_ID_CHANNEL = "notification_daily_reminder"
         const val NAME_EXTRA = "name_extra"
         const val NOTE_EXTRA = "note_extra"
-
-//        @Volatile
-//        private var instance: NotifReminder? = null
-//        fun getInstance(): NotifReminder{
-//            return synchronized(this){
-//                instance?: NotifReminder()
-//            }
-//        }
 
 
     }

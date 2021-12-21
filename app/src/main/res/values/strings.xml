@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Schnill</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_timer">Timer</string>
     <string name="history">History</string>
     <string name="session_name_focus">Focus Session</string>
@@ -25,7 +22,6 @@
     <string name="choice_greeting">What brings you here today?</string>
     <string name="title_greeting_logo">welcome to</string>
     <string name="elapsed_null">0</string>
-    <string name="submit">Submit</string>
     <string name="delete_all">Delete All</string>
     <string name="rv_history_null">You don\'t have any session yet~</string>
     <string name="subtitle_history">your saved sessions will be listed here</string>
@@ -40,7 +36,6 @@
     <string name="session_s_name">Session\'s Name</string>
     <string name="alert_subtitle_stop_2">TIMER?</string>
     <string name="about">About</string>
-    <string name="empty_list_message">empty</string>
     <string name="fabaddreminder">fabAddReminder</string>
     <string name="subtitle_reminder">yours will be listed here</string>
     <string name="create">CREATE</string>

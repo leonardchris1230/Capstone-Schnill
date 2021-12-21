@@ -11,17 +11,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
-import android.view.Gravity
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
-import android.widget.*
-import androidx.appcompat.app.AlertDialog
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.core.view.marginEnd
-import androidx.core.view.marginStart
 import androidx.lifecycle.ViewModelProvider
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.data.history.History
@@ -268,10 +266,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
-
-    }
+}
 
 
 

@@ -11,9 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lazibear.capstone_schnill.R
 import com.lazibear.capstone_schnill.data.reminder.ReminderViewModelFactory
@@ -50,7 +48,7 @@ class ReminderListActivity : AppCompatActivity() {
 
         reminderViewModel.getAllReminder().observe(this, {
             reminderAdapter.submitList(it)
-            if (it.isEmpty()){
+            if (it.isEmpty()) {
                 binding.nullReminder.visibility = View.VISIBLE
 
             }
@@ -58,7 +56,6 @@ class ReminderListActivity : AppCompatActivity() {
         })
         setFabClick()
     }
-
 
 
     private fun setFabClick() {

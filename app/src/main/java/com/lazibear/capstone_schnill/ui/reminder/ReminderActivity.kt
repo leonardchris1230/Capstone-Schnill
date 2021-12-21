@@ -51,9 +51,9 @@ class ReminderActivity : AppCompatActivity() {
                     Toast.makeText(this, "Please enter the reminder name", Toast.LENGTH_SHORT)
                 toast.show()
             } else {
-
-                reminderNotification()
                 createNotification()
+                reminderNotification()
+
 
             }
 
