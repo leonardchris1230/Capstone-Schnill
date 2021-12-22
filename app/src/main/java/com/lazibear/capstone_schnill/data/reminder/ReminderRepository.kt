@@ -31,9 +31,9 @@ class ReminderRepository(
 
         fun getInstance(context: Context): ReminderRepository {
             return instance ?: synchronized(this) {
-                if (ReminderRepository.instance == null) {
+                if (instance == null) {
                     val database = ReminderDatabase.getInstance(context)
-                    ReminderRepository.instance = ReminderRepository(
+                    instance = ReminderRepository(
                         database.reminderDao(),
                         Executors.newSingleThreadExecutor()
                     )

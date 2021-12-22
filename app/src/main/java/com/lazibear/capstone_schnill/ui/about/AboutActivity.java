@@ -13,7 +13,7 @@ import com.lazibear.capstone_schnill.R;
 import com.lazibear.capstone_schnill.databinding.ActivityAboutBinding;
 
 public class AboutActivity extends AppCompatActivity {
-    private ActivityAboutBinding binding;
+
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -24,19 +24,11 @@ public class AboutActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         binding.aboutToolbar.setNavigationIcon(R.drawable.ic_back_arrow);
-        binding.aboutToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        binding.btnGithub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Uri.parse("https://github.com/leonardchris1230/Capstone-Schnill");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
+        binding.aboutToolbar.setNavigationOnClickListener(view -> onBackPressed());
+        binding.btnGithub.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://github.com/leonardchris1230/Capstone-Schnill");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         });
     }
 }

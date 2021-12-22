@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#F8F8F8"
+                android:contentDescription="@string/img"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/blue_bg_container"
+                android:contentDescription="@string/img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +42,7 @@
                 android:id="@+id/alert_stop_logo"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:contentDescription="@string/img"
                 android:src="@drawable/ic_timer_line"
                 app:layout_constraintBottom_toBottomOf="@id/img_bg_alert"
                 app:layout_constraintHorizontal_bias="0.20"

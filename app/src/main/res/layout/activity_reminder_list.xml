@@ -39,7 +39,7 @@
         app:layout_constraintRight_toRightOf="@id/shapeable_bg_reminder"
         app:layout_constraintTop_toBottomOf="@id/reminder_toolbar"
         app:layout_constraintBottom_toBottomOf="@id/shapeable_bg_reminder"
-        android:text="Reminder"
+        android:text="@string/reminder"
         android:fontFamily="sans-serif-condensed-light"
         android:textColor="@color/black"
         android:textSize="64sp"

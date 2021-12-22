@@ -1,7 +1,6 @@
 package com.lazibear.capstone_schnill.notif
 
 
-import android.app.AlarmManager
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
