@@ -11,6 +11,7 @@
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/blue_bg.xml" value="0.15" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/blue_bg_container.xml" value="0.2046875" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/custom_btn.xml" value="0.2203125" />
+        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/custom_button.xml" value="0.20104166666666667" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/fab_explotion.xml" value="0.13489583333333333" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/ic_back_arrow.xml" value="0.2203125" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/drawable/ic_back_arrow_black.xml" value="0.2203125" />
@@ -39,7 +40,7 @@
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_choice.xml" value="0.1" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_history.xml" value="0.14814814814814814" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_main.xml" value="0.20675105485232068" />
-        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_reminder.xml" value="0.12" />
+        <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_reminder.xml" value="0.18" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/activity_reminder_list.xml" value="0.1" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/alert_deletehistory.xml" value="0.1" />
         <entry key="..\:/COLLEGE SHIT/DicodingAndroid/Capstone_Schnill2/app/src/main/res/layout/alert_reminder.xml" value="0.1" />

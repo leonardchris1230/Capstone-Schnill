@@ -43,5 +43,7 @@
     <string name="null_reminder">THERE IS NO REMINDER YET</string>
     <string name="all_reminder">ALL REMINDER?</string>
     <string name="alert_del_reminder">THIS ACTION WILL DELETE ALL REMINDERS</string>
+    <string name="alarm_reminder_text">This is a testing alarm</string>
+
 
 </resources>

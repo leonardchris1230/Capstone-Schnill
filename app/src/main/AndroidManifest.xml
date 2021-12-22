@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/splashscreen">
+        <receiver android:name=".notif.NotifReminder"
+            android:enabled="true"/>
         <activity
             android:name=".ui.about.AboutActivity"
             android:exported="true" />

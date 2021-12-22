@@ -1,20 +1,24 @@
 package com.lazibear.capstone_schnill.notif
 
 
+import android.app.AlarmManager
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import com.lazibear.capstone_schnill.R
 
 class NotifReminder : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notification = NotificationCompat.Builder(context, NOTIFICATION_ID_CHANNEL)
             .setSmallIcon(R.drawable.ic_notif_schnill)
             .setContentTitle(intent.getStringExtra(NAME_EXTRA))
             .setContentText(intent.getStringExtra(NOTE_EXTRA))
+            .setSound(alarmSound)
             .build()
 
         val notificationManager =
