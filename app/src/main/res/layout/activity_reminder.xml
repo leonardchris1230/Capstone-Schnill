@@ -10,6 +10,7 @@
     tools:context=".ui.reminder.ReminderActivity">
 
     <androidx.appcompat.widget.Toolbar
+        app:title="Create Reminder"
         android:id="@+id/reminder_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -18,16 +19,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/Theme.Schnill.PopupOverlay" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center"
-        android:text="Create Reminder"
-        android:textColor="@color/black"
-        android:textSize="48sp"
-        android:background="@drawable/lime_bg"
-       />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
